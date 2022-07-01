@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netframework4.8</TargetFramework>
+	  <LangVersion>10</LangVersion>
+	  <Nullable>enable</Nullable>
+	  <RootNamespace>A2v10.Pdf</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="QuestPDF" Version="2022.6.2" />
+  </ItemGroup>
+
+</Project>

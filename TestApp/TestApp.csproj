@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netframework4.8</TargetFramework>
+	  <LangVersion>10.0</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\A2v10.Data\A2v10.Data\A2v10.Data.csproj" />
+    <ProjectReference Include="..\A2v10.Pdf.Report\A2v10.Pdf.Report.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Invoice.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+	
+</Project>
