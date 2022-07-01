@@ -2,11 +2,12 @@
 
 using System.Dynamic;
 
-using A2v10.Pdf.Xaml;
-
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
+
+using A2v10.Pdf.Xaml;
+
 
 namespace A2v10.Pdf;
 
@@ -23,6 +24,7 @@ internal class PageComposer
 
 	internal void Compose(PageDescriptor page)
 	{
+		// TODO: styles
 		page.Size(PageSizes.A4.Portrait());
 		page.MarginVertical(20, Unit.Millimetre);
 		page.MarginHorizontal(10, Unit.Millimetre);
@@ -32,16 +34,24 @@ internal class PageComposer
 		);
 
 		// header
+		// TODO:
+
+		// content
 		page.Content().Element(ComposeContent);
+
 		// footer
+		// TODO
 	}
 
 	void ComposeContent(IContainer container)
 	{
-		container.Column(column =>
+		foreach (var c in _report.Columns)
 		{
-			column.Item()
-				.Text("Hello from C#");
-		});
+			container.Column(column =>
+			{
+				var cc = new ColumnComposer(c, _data);
+				cc.Compose(column);
+			});
+		}
 	}
 }

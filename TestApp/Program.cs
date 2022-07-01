@@ -1,4 +1,5 @@
-﻿using A2v10.Pdf.ReportBuilder;
+﻿using A2v10.Data;
+using A2v10.Pdf.ReportBuilder;
 using System;
 using System.Diagnostics;
 using System.Dynamic;
@@ -23,9 +24,20 @@ internal static class Program
 
 	static void Main(string[] args)
 	{
-		var eo = new ExpandoObject();
+		var loc = new NullDataLocalizer();
+		var prof = new NullDataProfiler();
+		var config = new SimpleDataConfiguration();
+
+		var dbContext = new SqlDbContext(prof, config, loc);
+
+		var dm = dbContext.LoadModel(null, "a2demo.[Waybill.Load]", new ExpandoObject()
+		{
+			{ "UserId", 99 },
+			{ "Id", 220 }
+		});
+
 		var path = "C:/Git/A2v10.Pdf.Report/TestApp/Invoice.xaml";
-		var builder = new PdfBuilder(path, eo);
+		var builder = new PdfBuilder(path, dm.Root);
 
 		var outPath = "sample.pdf";
 		DeleteFile(outPath);

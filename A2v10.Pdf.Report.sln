@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A2v10.Pdf.Report", "A2v10.Pdf.Report\A2v10.Pdf.Report.csproj", "{F79EAECB-D751-472C-A0FB-27CD19BE5AE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "A2v10.Pdf.Report", "A2v10.Pdf.Report\A2v10.Pdf.Report.csproj", "{F79EAECB-D751-472C-A0FB-27CD19BE5AE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{251367AE-2603-49A6-A0E5-0AD6692773B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp", "TestApp\TestApp.csproj", "{251367AE-2603-49A6-A0E5-0AD6692773B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A2v10.Data", "..\A2v10.Data\A2v10.Data\A2v10.Data.csproj", "{3CEFBA76-9ED3-40B4-A844-CC17D960202F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A2v10.Pdf.Xaml", "A2v10.Pdf.Xaml\A2v10.Pdf.Xaml.csproj", "{0551923A-2336-4C6C-98EB-3979D04EB20E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{251367AE-2603-49A6-A0E5-0AD6692773B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{251367AE-2603-49A6-A0E5-0AD6692773B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{251367AE-2603-49A6-A0E5-0AD6692773B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CEFBA76-9ED3-40B4-A844-CC17D960202F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CEFBA76-9ED3-40B4-A844-CC17D960202F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CEFBA76-9ED3-40B4-A844-CC17D960202F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CEFBA76-9ED3-40B4-A844-CC17D960202F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0551923A-2336-4C6C-98EB-3979D04EB20E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0551923A-2336-4C6C-98EB-3979D04EB20E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0551923A-2336-4C6C-98EB-3979D04EB20E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0551923A-2336-4C6C-98EB-3979D04EB20E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

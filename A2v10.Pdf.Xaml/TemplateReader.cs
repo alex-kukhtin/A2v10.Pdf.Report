@@ -3,9 +3,7 @@
 using System;
 using System.Xaml;
 
-using A2v10.Pdf.Xaml;
-
-namespace A2v10.Pdf.ReportBuilder;
+namespace A2v10.Pdf.Xaml;
 
 public class TemplateReader
 {

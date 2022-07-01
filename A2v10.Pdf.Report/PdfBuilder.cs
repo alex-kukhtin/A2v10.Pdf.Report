@@ -1,8 +1,12 @@
-﻿using System;
+﻿// Copyright © 2022 Oleksandr Kukhtin. All rights reserved.
+
+using System;
 using System.Dynamic;
 using System.IO;
-using A2v10.Pdf.Xaml;
+
 using QuestPDF.Fluent;
+
+using A2v10.Pdf.Xaml;
 
 namespace A2v10.Pdf.ReportBuilder;
 
@@ -23,6 +27,7 @@ public class PdfBuilder
 	{
 		var ms = new MemoryStream();
 		Build(ms);
+		ms.Seek(0, SeekOrigin.Begin);
 		return ms;
 	}
 
@@ -31,6 +36,5 @@ public class PdfBuilder
 		Report rep = _templateReader.ReadReport(_templatePath);
 		var doc = new ReportDocument(rep, _model);
 		doc.GeneratePdf(stream);
-		stream.Seek(0, SeekOrigin.Begin);
 	}
 }

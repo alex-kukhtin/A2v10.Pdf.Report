@@ -32,7 +32,7 @@ public class ReportDocument : IDocument
 	{
 		var title = _report.Title;
 		var md = DocumentMetadata.Default;
-		md.Title = "Title from C# code";
+		md.Title = title;// "Title from C# code";
 		return md;
 	}
 }

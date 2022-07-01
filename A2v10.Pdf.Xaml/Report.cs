@@ -5,8 +5,11 @@ using System.Windows.Markup;
 
 namespace A2v10.Pdf.Xaml;
 
-[ContentProperty("Children")]
+[ContentProperty("Columns")]
 public class Report : XamlElement
 {
 	public String? Title { get; init; }
+
+
+	public ColumnCollection Columns { get; init; } = new ColumnCollection();
 }
