@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp", "TestApp\TestApp.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A2v10.Data", "..\A2v10.Data\A2v10.Data\A2v10.Data.csproj", "{3CEFBA76-9ED3-40B4-A844-CC17D960202F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A2v10.Pdf.Xaml", "A2v10.Pdf.Xaml\A2v10.Pdf.Xaml.csproj", "{0551923A-2336-4C6C-98EB-3979D04EB20E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "A2v10.Xaml.Report", "A2v10.Xaml.Report\A2v10.Xaml.Report.csproj", "{BAF76560-BF82-4A2A-902C-2D2A31FE9954}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0DA432A8-99B7-4B6B-9D86-BD9F4CB02E1C}"
+	ProjectSection(SolutionItems) = preProject
+		todo.txt = todo.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +34,10 @@ Global
 		{3CEFBA76-9ED3-40B4-A844-CC17D960202F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CEFBA76-9ED3-40B4-A844-CC17D960202F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CEFBA76-9ED3-40B4-A844-CC17D960202F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0551923A-2336-4C6C-98EB-3979D04EB20E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0551923A-2336-4C6C-98EB-3979D04EB20E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0551923A-2336-4C6C-98EB-3979D04EB20E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0551923A-2336-4C6C-98EB-3979D04EB20E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAF76560-BF82-4A2A-902C-2D2A31FE9954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAF76560-BF82-4A2A-902C-2D2A31FE9954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAF76560-BF82-4A2A-902C-2D2A31FE9954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAF76560-BF82-4A2A-902C-2D2A31FE9954}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

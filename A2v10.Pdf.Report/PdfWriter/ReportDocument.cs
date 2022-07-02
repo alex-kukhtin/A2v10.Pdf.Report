@@ -5,26 +5,27 @@ using System.Dynamic;
 using QuestPDF.Infrastructure;
 using QuestPDF.Drawing;
 
-using A2v10.Pdf.Xaml;
 using QuestPDF.Fluent;
 
-namespace A2v10.Pdf;
+namespace A2v10.Pdf.Report;
 
 public class ReportDocument : IDocument
 {
-	private readonly Report _report;
+	private readonly A2v10.Xaml.Report.Report _report;
 	private readonly ExpandoObject _data;
-	public ReportDocument(Report report, ExpandoObject data)
+	private readonly ScriptEngine _engine;
+	public ReportDocument(A2v10.Xaml.Report.Report report, ExpandoObject data)
 	{
 		_report = report;
 		_data = data;
+		_engine = new ScriptEngine(_data);
 	}
 
 	public void Compose(IDocumentContainer container)
 	{
 		container.Page(page =>
 		{
-			new PageComposer(_report, _data).Compose(page);
+			new PageComposer(_report, _engine).Compose(page);
 		});
 	}
 

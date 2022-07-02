@@ -3,7 +3,7 @@
 using System;
 using System.Xaml;
 
-namespace A2v10.Pdf.Xaml;
+namespace A2v10.Xaml.Report;
 
 public class TemplateReader
 {
@@ -11,7 +11,7 @@ public class TemplateReader
 	{
 		var obj = XamlServices.Load(path);
 		if (obj is not Report rep)
-			throw new InvalidOperationException("Object is not a A2v10.Pdf.Xaml.Report");
+			throw new InvalidOperationException("Object is not a A2v10.Xaml.Report.Report");
 		return rep;
 	}
 }

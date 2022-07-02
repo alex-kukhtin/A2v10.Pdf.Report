@@ -1,22 +1,19 @@
-﻿using A2v10.Pdf.Xaml;
-using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Copyright © 2022 Oleksandr Kukhtin. All rights reserved.
 
-namespace A2v10.Pdf
+using System;
+
+using A2v10.Xaml.Report;
+
+namespace A2v10.Pdf.Report;
+
+internal static class Extensions
 {
-	internal static class Extensions
+	public static FlowElementComposer CreateComposer(this FlowElement elem, ScriptEngine engine)
 	{
-		public static FlowElementComposer CreateComposer(this FlowElement elem, ExpandoObject data)
+		return elem switch
 		{
-			return elem switch
-			{
-				Table table => new TableComposer(table, data),
-				_ => throw new InvalidOperationException($"There is no composer for {elem.GetType()}")
-			};
-		}
+			Table table => new TableComposer(table, engine),
+			_ => throw new InvalidOperationException($"There is no composer for {elem.GetType()}")
+		};
 	}
 }

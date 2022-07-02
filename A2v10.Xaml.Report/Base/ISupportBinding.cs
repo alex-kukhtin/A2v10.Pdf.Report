@@ -2,7 +2,7 @@
 
 using System;
 
-namespace A2v10.Pdf.Xaml;
+namespace A2v10.Xaml.Report;
 
 public interface ISupportBinding
 {

@@ -1,25 +1,21 @@
 ﻿// Copyright © 2022 Oleksandr Kukhtin. All rights reserved.
 
-using System.Dynamic;
-
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 
-using A2v10.Pdf.Xaml;
 
-
-namespace A2v10.Pdf;
+namespace A2v10.Pdf.Report;
 
 internal class PageComposer
 {
-	private readonly Report _report;
-	private readonly ExpandoObject _data;
+	private readonly A2v10.Xaml.Report.Report _report;
+	private readonly ScriptEngine _engine;
 
-	internal PageComposer(Report report, ExpandoObject data)
+	internal PageComposer(A2v10.Xaml.Report.Report report, ScriptEngine engine)
 	{
 		_report = report;
-		_data = data;
+		_engine = engine;
 	}
 
 	internal void Compose(PageDescriptor page)
@@ -30,7 +26,7 @@ internal class PageComposer
 		page.MarginHorizontal(10, Unit.Millimetre);
 		page.DefaultTextStyle(ts => ts
 			.FontFamily(Fonts.Verdana)
-			.FontSize(12F)
+			.FontSize(10F)
 		);
 
 		// header
@@ -49,7 +45,7 @@ internal class PageComposer
 		{
 			container.Column(column =>
 			{
-				var cc = new ColumnComposer(c, _data);
+				var cc = new ColumnComposer(c, _engine);
 				cc.Compose(column);
 			});
 		}

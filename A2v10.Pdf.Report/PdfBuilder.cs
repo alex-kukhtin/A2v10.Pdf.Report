@@ -6,9 +6,9 @@ using System.IO;
 
 using QuestPDF.Fluent;
 
-using A2v10.Pdf.Xaml;
+using A2v10.Xaml.Report;
 
-namespace A2v10.Pdf.ReportBuilder;
+namespace A2v10.Pdf.Report;
 
 public class PdfBuilder
 {
@@ -33,7 +33,7 @@ public class PdfBuilder
 
 	public void Build(Stream stream)
 	{
-		Report rep = _templateReader.ReadReport(_templatePath);
+		var rep = _templateReader.ReadReport(_templatePath);
 		var doc = new ReportDocument(rep, _model);
 		doc.GeneratePdf(stream);
 	}

@@ -1,7 +1,9 @@
-﻿using System;
+﻿// Copyright © 2022 Oleksandr Kukhtin. All rights reserved.
+
+using System;
 using System.Collections.Generic;
 
-namespace A2v10.Pdf.Xaml;
+namespace A2v10.Xaml.Report;
 
 public class BindImpl
 {
@@ -37,5 +39,10 @@ public class BindImpl
 			throw new XamlException($"Binding '{name}' must be a Bind");
 		}
 		return null;
+	}
+
+	public BindRuntime? GetBindRuntime(String name)
+	{
+		return GetBinding(name)?.Runtime();
 	}
 }

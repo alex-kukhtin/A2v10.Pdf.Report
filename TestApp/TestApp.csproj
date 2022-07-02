@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\A2v10.Data\A2v10.Data\A2v10.Data.csproj" />
     <ProjectReference Include="..\A2v10.Pdf.Report\A2v10.Pdf.Report.csproj" />
+    <ProjectReference Include="..\A2v10.Xaml.Report\A2v10.Xaml.Report.csproj" />
   </ItemGroup>
 
   <ItemGroup>

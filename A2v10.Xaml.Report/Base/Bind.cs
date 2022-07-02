@@ -4,7 +4,7 @@ using System;
 using System.Reflection;
 using System.Windows.Markup;
 
-namespace A2v10.Pdf.Xaml;
+namespace A2v10.Xaml.Report;
 
 public class Bind : MarkupExtension, ISupportBinding
 {
@@ -30,8 +30,14 @@ public class Bind : MarkupExtension, ISupportBinding
 	}
 
 	public String? Path { get; init; }
-	public String? Expression { get; init; }
 
+	public BindRuntime Runtime()
+	{
+		return new BindRuntime()
+		{
+			Path = this.Path
+		};
+	}
 
 	public override Object? ProvideValue(IServiceProvider serviceProvider)
 	{

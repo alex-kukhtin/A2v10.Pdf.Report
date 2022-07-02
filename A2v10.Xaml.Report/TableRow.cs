@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using System.Windows.Markup;
 
-namespace A2v10.Pdf.Xaml;
+namespace A2v10.Xaml.Report;
 
 [ContentProperty("Cells")]
 public class TableRow : XamlElement
@@ -13,4 +13,10 @@ public class TableRow : XamlElement
 
 public class TableRowCollection : List<TableRow>
 {
+	public IEnumerable<TableCell> Cells()
+	{
+		foreach (var row in this)
+			foreach (var c in row.Cells)
+				yield return c;
+	}
 }

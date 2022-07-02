@@ -1,11 +1,8 @@
-﻿using QuestPDF.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Copyright © 2022 Oleksandr Kukhtin. All rights reserved.
 
-namespace A2v10.Pdf;
+using QuestPDF.Infrastructure;
+
+namespace A2v10.Pdf.Report;
 
 internal abstract class FlowElementComposer
 {

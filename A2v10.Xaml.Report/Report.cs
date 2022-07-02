@@ -3,7 +3,7 @@
 using System;
 using System.Windows.Markup;
 
-namespace A2v10.Pdf.Xaml;
+namespace A2v10.Xaml.Report;
 
 [ContentProperty("Columns")]
 public class Report : XamlElement

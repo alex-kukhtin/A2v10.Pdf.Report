@@ -2,7 +2,7 @@
 
 using System;
 
-namespace A2v10.Pdf.Xaml;
+namespace A2v10.Xaml.Report;
 
 public class XamlElement : ISupportBinding
 {
@@ -22,6 +22,11 @@ public class XamlElement : ISupportBinding
 	public Bind? GetBinding(String name)
 	{
 		return _bindImpl?.GetBinding(name);
+	}
+
+	public BindRuntime? GetBindRuntime(String name)
+	{
+		return _bindImpl?.GetBindRuntime(name);
 	}
 	#endregion
 }

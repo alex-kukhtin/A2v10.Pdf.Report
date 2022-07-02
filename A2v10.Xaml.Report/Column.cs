@@ -1,13 +1,9 @@
 ﻿// Copyright © 2022 Oleksandr Kukhtin. All rights reserved.
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Markup;
 
-namespace A2v10.Pdf.Xaml;
+namespace A2v10.Xaml.Report;
 
 
 

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netframework4.8</TargetFramework>
@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ScriptEngine\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 
@@ -18,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\A2v10.Pdf.Xaml\A2v10.Pdf.Xaml.csproj" />
+    <ProjectReference Include="..\A2v10.Xaml.Report\A2v10.Xaml.Report.csproj" />
   </ItemGroup>
 
 </Project>

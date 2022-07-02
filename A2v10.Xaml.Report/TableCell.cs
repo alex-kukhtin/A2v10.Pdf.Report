@@ -4,12 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Markup;
 
-namespace A2v10.Pdf.Xaml;
+namespace A2v10.Xaml.Report;
 
 [ContentProperty("Content")]
 public class TableCell : XamlElement
 {
 	public Object? Content { get; init; }
+
+	public UInt32 ColSpan { get; init; }
+	public UInt32 RowSpan { get; init; }
 }
 
 public class TableCellCollection : List<TableCell>
