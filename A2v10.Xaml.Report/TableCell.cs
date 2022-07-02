@@ -7,10 +7,8 @@ using System.Windows.Markup;
 namespace A2v10.Xaml.Report;
 
 [ContentProperty("Content")]
-public class TableCell : XamlElement
+public class TableCell : ContentElement
 {
-	public Object? Content { get; init; }
-
 	public UInt32 ColSpan { get; init; }
 	public UInt32 RowSpan { get; init; }
 }

@@ -1,23 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netframework4.8</TargetFramework>
-	  <LangVersion>10</LangVersion>
-	  <Nullable>enable</Nullable>
-	  <RootNamespace>A2v10.Pdf</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netframework4.8</TargetFramework>
+		<Version>10.0.7857</Version>
+		<LangVersion>10</LangVersion>
+		<Nullable>enable</Nullable>
+		<RootNamespace>A2v10.Pdf.Report</RootNamespace>
+		<Product>A2v10</Product>
+		<PackageId>A2v10.Pdf.Report</PackageId>
+		<Authors>Oleksandr Kukthin</Authors>
+		<Company>Oleksandr Kukthin</Company>
+		<Description>A2v10 workflow core</Description>
+		<Copyright>Copyright © 2022 Oleksandr Kukthin. All rights reserved.</Copyright>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/alex-kukhtin/A2v10.Pdf.Report</RepositoryUrl>
+		<PackageTags>A2v10 Platform Pdf</PackageTags>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Jint" Version="3.0.0-beta-2037" />
+		<PackageReference Include="QuestPDF" Version="2022.6.2" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Jint" Version="3.0.0-beta-2037" />
-    <PackageReference Include="QuestPDF" Version="2022.6.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\A2v10.Xaml.Report\A2v10.Xaml.Report.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\A2v10.Xaml.Report\A2v10.Xaml.Report.csproj" />
+	</ItemGroup>
 
 </Project>

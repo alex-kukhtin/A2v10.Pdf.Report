@@ -11,31 +11,33 @@ namespace A2v10.Pdf.Report;
 internal class ColumnComposer
 {
 	private readonly Column _column;
-	private readonly ScriptEngine _engine;
+	private readonly RenderContext _context;
 
-	internal ColumnComposer(Column column, ScriptEngine engine)
+	internal ColumnComposer(Column column, RenderContext context)
 	{
 		_column = column;
-		_engine = engine;
+		_context = context;
 	}
 
 	public void Compose(ColumnDescriptor column)
 	{
 		foreach (var ch in _column.Children)
 		{
+			/*
 			column.Item().Padding(10F).Text(text =>
 			{
-				text.DefaultTextStyle(TextStyle.Default.FontSize(16F));
+				//text.DefaultTextStyle(TextStyle.Default.FontSize(16F));
 				text.Hyperlink("https://www.google.com/", "https://www.google.com/").Underline().FontColor(Colors.Indigo.Accent4);
 				text.Span("Span 1").Bold();
-				text.Span(" ");
+				//text.Span(" ");
 				text.Span("Span 2").Italic();
-				text.Span(" ");
+				//text.Span(" ");
 				text.Span("Span 3").Underline();
-				text.Span(" ");
+				//text.Span(" ");
 			});
 			column.Item().PaddingVertical(5).LineHorizontal(.1F).LineColor(Colors.Grey.Medium);
 			column.Item().Padding(10F).Hyperlink("https:/google.com").Text("Google!");
+			*/
 
 			column.Item().Element(cont =>
 			{
@@ -46,7 +48,7 @@ internal class ColumnComposer
 
 	void ComposeElement(IContainer container, FlowElement elem)
 	{
-		var comp = elem.CreateComposer(_engine);
+		var comp = elem.CreateComposer(_context);
 		comp.Compose(container);
 	}
 }

@@ -5,6 +5,12 @@ using System.Windows.Markup;
 
 namespace A2v10.Xaml.Report;
 
+public enum TableStyle
+{
+	Default,
+	Details
+}
+
 [ContentProperty("Body")]
 public class Table : FlowElement
 {
@@ -17,4 +23,6 @@ public class Table : FlowElement
 	public TableRowCollection Footer { get; init; } = new TableRowCollection();
 
 	public TableRowCollection Body { get; init; } = new TableRowCollection();
+
+	public TableStyle Style { get; init; }
 }

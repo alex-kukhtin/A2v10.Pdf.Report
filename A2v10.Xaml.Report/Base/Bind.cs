@@ -31,11 +31,14 @@ public class Bind : MarkupExtension, ISupportBinding
 
 	public String? Path { get; init; }
 
+	public String? Format { get; init; }
+
 	public BindRuntime Runtime()
 	{
 		return new BindRuntime()
 		{
-			Path = this.Path
+			Path = this.Path,
+			Format = this.Format
 		};
 	}
 

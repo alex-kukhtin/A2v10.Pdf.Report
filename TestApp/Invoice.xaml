@@ -1,15 +1,24 @@
 ﻿<Report xmlns="clr-namespace:A2v10.Xaml.Report;assembly=A2v10.Xaml.Report"
 		Title="I am the title">
 	<Column>
+		<Text Style="Title">
+			Видаткова накладна №
+			<Span Content="{Bind Document.No}"/>
+			від
+			<Span Content="{Bind Document.Date, Format='D'}" />
+		</Text>
 		<Table>
 			<Table.Columns>
 				<TableColumn />
 				<TableColumn />
 				<TableColumn />
+				<TableColumn />
 			</Table.Columns>
 			<TableRow>
-				<TableCell>Видаткова накладна</TableCell>
-				<TableCell Content="{Bind Document.Date}"/>
+				<TableCell>
+				</TableCell>
+				<TableCell>@[Localize]</TableCell>
+				<TableCell Content="{Bind Document.Date, Format='D'}"/>
 				<TableCell>
 					<Table ItemsSource="{Bind Document.Rows}">
 						<Table.Columns>
@@ -26,7 +35,7 @@
 				</TableCell>
 			</TableRow>
 		</Table>
-		<Table ItemsSource="{Bind Document.Rows}">
+		<Table ItemsSource="{Bind Document.Rows}" Style="Details">
 			<Table.Columns>
 				<TableColumn />
 				<TableColumn />

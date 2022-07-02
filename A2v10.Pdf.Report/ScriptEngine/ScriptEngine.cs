@@ -18,9 +18,10 @@ internal class ScriptEngine
 		_engine = new Engine(opts =>
 		{
 			opts.Strict = true;
-			opts.Debugger.Enabled = true;
+			//opts.Debugger.Enabled = true;
+			opts.TimeZone = TimeZoneInfo.Utc;
 		});
-		// all properties
+		// all properties as Root objects
 		foreach (var item in model)
 			_engine.SetValue(item.Key, item.Value);
 	}

@@ -1,7 +1,5 @@
 ﻿// Copyright © 2022 Oleksandr Kukhtin. All rights reserved.
 
-using System.Dynamic;
-
 using QuestPDF.Infrastructure;
 using QuestPDF.Drawing;
 
@@ -9,23 +7,21 @@ using QuestPDF.Fluent;
 
 namespace A2v10.Pdf.Report;
 
-public class ReportDocument : IDocument
+internal class ReportDocument : IDocument
 {
 	private readonly A2v10.Xaml.Report.Report _report;
-	private readonly ExpandoObject _data;
-	private readonly ScriptEngine _engine;
-	public ReportDocument(A2v10.Xaml.Report.Report report, ExpandoObject data)
+	private readonly RenderContext _context;
+	public ReportDocument(A2v10.Xaml.Report.Report report, RenderContext context)
 	{
 		_report = report;
-		_data = data;
-		_engine = new ScriptEngine(_data);
+		_context = context;
 	}
 
 	public void Compose(IDocumentContainer container)
 	{
 		container.Page(page =>
 		{
-			new PageComposer(_report, _engine).Compose(page);
+			new PageComposer(_report, _context).Compose(page);
 		});
 	}
 

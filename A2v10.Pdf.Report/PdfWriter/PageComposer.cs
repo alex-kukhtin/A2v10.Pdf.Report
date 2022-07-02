@@ -10,12 +10,12 @@ namespace A2v10.Pdf.Report;
 internal class PageComposer
 {
 	private readonly A2v10.Xaml.Report.Report _report;
-	private readonly ScriptEngine _engine;
+	private readonly RenderContext _context;
 
-	internal PageComposer(A2v10.Xaml.Report.Report report, ScriptEngine engine)
+	internal PageComposer(A2v10.Xaml.Report.Report report, RenderContext context)
 	{
 		_report = report;
-		_engine = engine;
+		_context = context;
 	}
 
 	internal void Compose(PageDescriptor page)
@@ -45,7 +45,7 @@ internal class PageComposer
 		{
 			container.Column(column =>
 			{
-				var cc = new ColumnComposer(c, _engine);
+				var cc = new ColumnComposer(c, _context);
 				cc.Compose(column);
 			});
 		}

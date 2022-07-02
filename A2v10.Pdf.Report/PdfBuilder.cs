@@ -14,13 +14,13 @@ public class PdfBuilder
 {
 	private readonly String _templatePath;
 	private readonly ExpandoObject _model;
+	private readonly IReportLocalizer _localizer;
 
-	private readonly TemplateReader _templateReader;
-	public PdfBuilder(String templatePath, ExpandoObject model)
+	public PdfBuilder(IReportLocalizer localizer, String templatePath, ExpandoObject model)
 	{
+		_localizer = localizer;
 		_templatePath = templatePath;
 		_model = model;
-		_templateReader = new TemplateReader();		
 	}	
 
 	public Stream Build()
@@ -33,8 +33,10 @@ public class PdfBuilder
 
 	public void Build(Stream stream)
 	{
-		var rep = _templateReader.ReadReport(_templatePath);
-		var doc = new ReportDocument(rep, _model);
+		var rdr = new TemplateReader();
+		var rep = rdr.ReadReport(_templatePath);
+		var context = new RenderContext(_localizer, _model);
+		var doc = new ReportDocument(rep, context);
 		doc.GeneratePdf(stream);
 	}
 }

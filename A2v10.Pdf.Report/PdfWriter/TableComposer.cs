@@ -24,14 +24,14 @@ internal enum CellKind
 internal class TableComposer : FlowElementComposer
 {
 	private readonly Table _table;
-	private readonly ScriptEngine _engine;
+	private readonly RenderContext _context;
 
 	private readonly Dictionary<TableCell, JsValue> _accessFuncs = new();
 
-	public TableComposer(Table table, ScriptEngine engine)
+	public TableComposer(Table table, RenderContext context)
 	{
 		_table = table;
-		_engine = engine;
+		_context = context;
 	}
 
 	internal override void Compose(IContainer container)
@@ -54,7 +54,7 @@ internal class TableComposer : FlowElementComposer
 			if (isbind != null && isbind.Path != null)
 			{
 				CreateAccessFunc(_table.Body);
-				var coll = _engine.EvaluateCollection(isbind.Path);
+				var coll = _context.Engine.EvaluateCollection(isbind.Path);
 				if (coll != null)
 					foreach (var elem in coll)
 						ComposeRowCollection(CellKind.Body, tblDescr, _table.Body, elem);
@@ -83,7 +83,7 @@ internal class TableComposer : FlowElementComposer
 				var cont = cell.GetBindRuntime("Content");
 				if (cont != null && cont.Path != null)
 				{
-					var func = _engine.CreateAccessFunction(cont.Path);
+					var func = _context.Engine.CreateAccessFunction(cont.Path);
 					_accessFuncs.Add(cell, func);
 				}
 			}
@@ -103,22 +103,19 @@ internal class TableComposer : FlowElementComposer
 
 		if (_accessFuncs.TryGetValue(cell, out var contentFunc))
 		{
-			var value = _engine.Invoke(contentFunc, data);
-			ci.Text(value.ToString());
+			var value = _context.Engine.Invoke(contentFunc, data);
+			ci.Text(_context.ValueToString(value));
 			return;
 		}
 
-		var cont = cell.GetBindRuntime("Content");
-		if (cont != null)
+		if (cell.Content is FlowElement flowElem)
+			flowElem.CreateComposer(_context).Compose(ci);
+		else
 		{
-			var val = _engine.EvaluateValue(cont.Path);
+			var val = _context.GetValueAsString(cell);
 			if (val != null)
-				ci.Text(val.ToString());
-		} 
-		else if (cell.Content is FlowElement flowElem)
-			flowElem.CreateComposer(_engine).Compose(ci);
-		else if (cell.Content != null)
-			ci.Text(cell.Content.ToString());
+				ci.Text(val);
+		}
 	}
 
 	private void ComposeRowCollection(CellKind kind, TableDescriptor tbl, TableRowCollection body, ExpandoObject? data = null)

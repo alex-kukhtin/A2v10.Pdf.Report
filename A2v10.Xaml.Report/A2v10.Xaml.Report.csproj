@@ -1,14 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netframework4.8</TargetFramework>
+		<Version>10.0.7857</Version>
+		<LangVersion>10</LangVersion>
+		<Nullable>enable</Nullable>
+		<RootNamespace>A2v10.Xaml.Report</RootNamespace>
+		<Product>A2v10</Product>
+		<PackageId>A2v10.Xaml.Report</PackageId>
+		<Authors>Oleksandr Kukthin</Authors>
+		<Company>Oleksandr Kukthin</Company>
+		<Copyright>Copyright © 2022 Oleksandr Kukthin. All rights reserved.</Copyright>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/alex-kukhtin/A2v10.Pdf.Report</RepositoryUrl>
+		<PackageTags>A2v10 Platform Pdf Xaml</PackageTags>
+	</PropertyGroup>
 
-  <PropertyGroup>
-	  <TargetFramework>netframework4.8</TargetFramework>
-	  <LangVersion>10</LangVersion>
-	  <Nullable>enable</Nullable>
-	  <RootNamespace>A2v10.Xaml.Report</RootNamespace>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Reference Include="System.Xaml" />
-  </ItemGroup>
-
+	<ItemGroup>
+		<Reference Include="System.Xaml" />
+	</ItemGroup>
 </Project>
