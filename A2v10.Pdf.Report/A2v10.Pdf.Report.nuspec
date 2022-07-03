@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>A2v10.Pdf.Report</id>
-		<version>10.0.7861</version>
+		<version>10.0.7865</version>
 		<title>A2v10 Pdf Report Builder</title>
 		<authors>Oleksandr Kukhtin</authors>
 		<owners>Oleksandr Kukhtin</owners>
@@ -14,6 +14,10 @@
 		<tags>A2v10 Platform Business WebApp</tags>
 		<repository type="git" url="https://github.com/alex-kukhtin/A2v10.Pdf.Report" branch="master"/>
 		<references>
+			<group targetFramework=".NETFramework4.8">
+				<reference file="A2v10.Pdf.Report.dll" />
+				<reference file="A2v10.Xaml.Report.dll" />
+			</group>
 		</references>
 		<frameworkAssemblies>
 		</frameworkAssemblies>
@@ -25,4 +29,10 @@
 			</group>
 		</dependencies>
 	</metadata>
+	<files>
+		<file src="bin/Release/netframework4.8/A2v10.Pdf.Report.dll" target="ref/net48" />
+		<file src="bin/Release/netframework4.8/A2v10.Xaml.Report.dll" target="ref/net48" />
+		<file src="bin/Release/netframework4.8/A2v10.Pdf.Report.dll" target="lib/net48" />
+		<file src="bin/Release/netframework4.8/A2v10.Xaml.Report.dll" target="lib/net48" />
+	</files>
 </package>
