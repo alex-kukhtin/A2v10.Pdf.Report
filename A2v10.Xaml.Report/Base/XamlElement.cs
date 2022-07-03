@@ -6,6 +6,10 @@ namespace A2v10.Xaml.Report;
 
 public class XamlElement : ISupportBinding
 {
+
+	public TextAlign? Align { get; init; }
+	public VertAlign? VAlign { get; init; }
+
 	BindImpl? _bindImpl;
 
 	#region ISupportBinding
@@ -19,6 +23,17 @@ public class XamlElement : ISupportBinding
 		}
 	}
 
+	protected RuntimeStyle? _runtimeStyle;
+
+	public RuntimeStyle? RuntimeStyle => _runtimeStyle;
+
+	public RuntimeStyle GetRuntimeStyle()
+	{
+		if (_runtimeStyle == null)
+			_runtimeStyle = new RuntimeStyle();
+		return _runtimeStyle;
+	}
+
 	public Bind? GetBinding(String name)
 	{
 		return _bindImpl?.GetBinding(name);
@@ -29,4 +44,16 @@ public class XamlElement : ISupportBinding
 		return _bindImpl?.GetBindRuntime(name);
 	}
 	#endregion
+
+	public void ApplyStylesSelf()
+	{
+		if (Align != null)
+			GetRuntimeStyle().Align = Align;
+		if (VAlign != null)
+			GetRuntimeStyle().VAlign = VAlign;
+	}
+
+	public virtual void ApplyStyles(String selector, StyleBag styles)
+	{
+	}
 }

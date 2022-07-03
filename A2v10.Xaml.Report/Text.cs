@@ -22,6 +22,15 @@ public class Text : FlowElement
 	public InlineCollection Inlines { get; } = new InlineCollection();
 
 	public TextStyle Style { get; init; }
+
+	public override void ApplyStyles(String selector, StyleBag styles)
+	{
+		var sel = selector + ">Text";
+		if (Style != TextStyle.Default)
+			sel += "." + Style;
+		_runtimeStyle = styles.GetRuntimeStyle(sel);
+		ApplyStylesSelf();
+	}
 }
 
 public class Span : ContentElement

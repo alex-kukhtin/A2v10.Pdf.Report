@@ -20,14 +20,28 @@ internal class TextComposer : FlowElementComposer
 
 	void ApplyStyles(ContentElement elem, TextSpanDescriptor textSpan)
 	{
-		textSpan.Bold();
+		//textSpan.Bold();
+	}
+
+	void ApplyRuntimeStyle(TextDescriptor descr)
+	{
+		var rs = _text.RuntimeStyle;
+		if (rs == null)
+			return;
+		var ts = QuestPDF.Infrastructure.TextStyle.Default;
+		if (rs.FontSize != null)
+		{
+			ts = ts.FontSize(rs.FontSize.Value);
+		}
+		descr.DefaultTextStyle(ts);
 	}
 
 	internal override void Compose(IContainer container)
 	{
-		container.ApplyDecoration().Text(txt =>
+		container.ApplyDecoration(_text.RuntimeStyle).Text(txt =>
 		{
 			//_context.ApplyTextStyle(txt, _text.Style);
+			ApplyRuntimeStyle(txt);
 			//txt.DefaultTextStyle(TextStyle.Default.FontSize(16F));
 			for (var i = 0; i < _text.Inlines.Count; i++)
 			{

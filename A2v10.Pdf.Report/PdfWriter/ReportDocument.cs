@@ -9,9 +9,9 @@ namespace A2v10.Pdf.Report;
 
 internal class ReportDocument : IDocument
 {
-	private readonly A2v10.Xaml.Report.Report _report;
+	private readonly A2v10.Xaml.Report.Page _report;
 	private readonly RenderContext _context;
-	public ReportDocument(A2v10.Xaml.Report.Report report, RenderContext context)
+	public ReportDocument(A2v10.Xaml.Report.Page report, RenderContext context)
 	{
 		_report = report;
 		_context = context;

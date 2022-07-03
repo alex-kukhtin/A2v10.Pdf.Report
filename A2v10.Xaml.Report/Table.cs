@@ -25,4 +25,16 @@ public class Table : FlowElement
 	public TableRowCollection Body { get; init; } = new TableRowCollection();
 
 	public TableStyle Style { get; init; }
+
+	public override void ApplyStyles(string selector, StyleBag styles)
+	{
+		var sel = $"Table.{Style}";
+		_runtimeStyle = styles.GetRuntimeStyle(sel);
+		foreach (var h in Header)
+			h.ApplyStyles(sel + ">Header", styles);
+		foreach (var b in Body)
+			b.ApplyStyles(sel + ">Body", styles);
+		foreach (var f in Footer)
+			f.ApplyStyles(sel + ">Footer", styles);
+	}
 }

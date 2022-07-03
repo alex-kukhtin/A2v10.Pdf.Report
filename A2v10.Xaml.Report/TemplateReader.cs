@@ -7,11 +7,13 @@ namespace A2v10.Xaml.Report;
 
 public class TemplateReader
 {
-	public Report ReadReport(String path)
+	public Page ReadReport(String path)
 	{
 		var obj = XamlServices.Load(path);
-		if (obj is not Report rep)
-			throw new InvalidOperationException("Object is not a A2v10.Xaml.Report.Report");
-		return rep;
+		if (obj is not Page page)
+			throw new InvalidOperationException("Object is not a A2v10.Xaml.Report.Page");
+		var styleBag = new StyleBag();
+		page.ApplyStyles("Root", styleBag);
+		return page;
 	}
 }

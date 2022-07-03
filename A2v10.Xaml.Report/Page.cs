@@ -6,10 +6,17 @@ using System.Windows.Markup;
 namespace A2v10.Xaml.Report;
 
 [ContentProperty("Columns")]
-public class Report : XamlElement
+public class Page : XamlElement
 {
 	public String? Title { get; init; }
 
-
 	public ColumnCollection Columns { get; init; } = new ColumnCollection();
+
+	public override void ApplyStyles(String selector, StyleBag styles)
+	{
+		var sel = selector + ">Page";
+		_runtimeStyle = styles.GetRuntimeStyle(sel);
+		foreach (var col in Columns)
+			col.ApplyStyles(sel, styles);
+	}
 }

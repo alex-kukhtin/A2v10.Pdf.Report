@@ -45,6 +45,7 @@ internal static class Program
 		var outPath = "sample.pdf";
 		DeleteFile(outPath);
 
+		//builder.Read();
 		using (var outFile = File.OpenWrite(outPath))
 		{
 			builder.Build(outFile);

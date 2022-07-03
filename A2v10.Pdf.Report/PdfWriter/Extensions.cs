@@ -3,6 +3,8 @@
 using System;
 
 using A2v10.Xaml.Report;
+using QuestPDF.Fluent;
+using QuestPDF.Infrastructure;
 
 namespace A2v10.Pdf.Report;
 
@@ -15,6 +17,26 @@ internal static class Extensions
 			Table table => new TableComposer(table, context),
 			Text text => new TextComposer(text, context),
 			_ => throw new InvalidOperationException($"There is no composer for {elem.GetType()}")
+		};
+	}
+
+	public static void TableColumn(this TableColumnsDefinitionDescriptor desc, TableColumn column)
+	{
+		if (column.Width?.Unit == "fr")
+			desc.RelativeColumn(column.Width.Value);
+		else
+			desc.ConstantColumn(column.Width.Value, GetUnit(column.Width.Unit));
+	}
+
+	public static Unit GetUnit(String ext)
+	{
+		return ext switch
+		{
+			"pt" => Unit.Point,
+			"mm" => Unit.Millimetre,
+			"cm" => Unit.Centimetre,
+			"in" => Unit.Inch,
+			_ => throw new ArgumentOutOfRangeException($"Invalid unit '{ext}'")
 		};
 	}
 }

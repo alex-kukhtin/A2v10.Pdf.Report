@@ -44,7 +44,7 @@ internal class TableComposer : FlowElementComposer
 					columns.RelativeColumn();
 				else
 					foreach (var cx in _table.Columns)
-						columns.RelativeColumn();
+						columns.TableColumn(cx);
 			});
 
 			if (_table.Header.Count != 0)
@@ -98,13 +98,15 @@ internal class TableComposer : FlowElementComposer
 		if (cell.ColSpan > 1)
 			cellCont = cellCont.ColumnSpan(cell.ColSpan);
 
+		var ci = cellCont.ApplyCellDecoration(cell.RuntimeStyle);
+
 		// TODO: style here
-		var ci = cellCont.Border(.2F).Padding(2F);
+		// var ci = cellCont.Background("#f5f5f5").Border(.2F).Padding(2F);
 
 		if (_accessFuncs.TryGetValue(cell, out var contentFunc))
 		{
 			var value = _context.Engine.Invoke(contentFunc, data);
-			ci.Text(_context.ValueToString(value));
+			ci.Text(_context.ValueToString(value)).ApplyText(cell.RuntimeStyle);
 			return;
 		}
 
@@ -114,7 +116,9 @@ internal class TableComposer : FlowElementComposer
 		{
 			var val = _context.GetValueAsString(cell);
 			if (val != null)
-				ci.Text(val);
+			{
+				ci.Text(val).ApplyText(cell.RuntimeStyle);
+			}
 		}
 	}
 

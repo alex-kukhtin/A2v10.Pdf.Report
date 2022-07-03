@@ -1,9 +1,8 @@
 
-3. Styles
-4. Text element with spans
 6. Bind. Formats
-8. Table.Columns из строки
 9. Page Margins, PageSize, Orientation
 10. Font Styles
 12. Library versions
-13. 
+13. Separate package for A2v10 platform
+14. Table. Padding, Border
+15. Formats!!!!

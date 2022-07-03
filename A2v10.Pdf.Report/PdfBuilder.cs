@@ -31,6 +31,12 @@ public class PdfBuilder
 		return ms;
 	}
 
+	public Page Read()
+	{
+		var rdr = new TemplateReader();
+		return rdr.ReadReport(_templatePath);
+	}
+
 	public void Build(Stream stream)
 	{
 		var rdr = new TemplateReader();
