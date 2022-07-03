@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netframework4.8</TargetFramework>
-		<Version>10.0.7857</Version>
+		<Version>10.0.7859</Version>
 		<LangVersion>10</LangVersion>
 		<Nullable>enable</Nullable>
 		<RootNamespace>A2v10.Pdf.Report</RootNamespace>
@@ -10,7 +10,7 @@
 		<PackageId>A2v10.Pdf.Report</PackageId>
 		<Authors>Oleksandr Kukthin</Authors>
 		<Company>Oleksandr Kukthin</Company>
-		<Description>A2v10 workflow core</Description>
+		<Description>A2v10 PDF builder</Description>
 		<Copyright>Copyright © 2022 Oleksandr Kukthin. All rights reserved.</Copyright>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/alex-kukhtin/A2v10.Pdf.Report</RepositoryUrl>
@@ -18,11 +18,22 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="A2v10.Pdf.Report.nuspec" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="A2v10.Pdf.Report.nuspec">
+	    <SubType>Designer</SubType>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Jint" Version="3.0.0-beta-2037" />
 		<PackageReference Include="QuestPDF" Version="2022.6.2" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\A2v10\Shared\A2v10.Infrastructure\A2v10.Infrastructure.csproj" />
 		<ProjectReference Include="..\A2v10.Xaml.Report\A2v10.Xaml.Report.csproj" />
 	</ItemGroup>
 
