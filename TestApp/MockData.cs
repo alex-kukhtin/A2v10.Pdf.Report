@@ -27,6 +27,6 @@ public class SimpleDataConfiguration : IDataConfiguration
 {
 	public String ConnectionString(String source)
 	{
-		return "Data Source=localhost;Initial Catalog=a2v10demo;Integrated Security=True";
+		return "Data Source=.\\SQLEXPRESS2019;Initial Catalog=newera;Integrated Security=True";
 	}
 }

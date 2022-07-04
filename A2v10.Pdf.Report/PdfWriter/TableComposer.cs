@@ -36,7 +36,7 @@ internal class TableComposer : FlowElementComposer
 
 	internal override void Compose(IContainer container)
 	{
-		container.Table(tblDescr =>
+		container.ApplyDecoration(_table.RuntimeStyle).Table(tblDescr =>
 		{
 			tblDescr.ColumnsDefinition(columns =>
 			{
@@ -98,6 +98,15 @@ internal class TableComposer : FlowElementComposer
 		if (cell.ColSpan > 1)
 			cellCont = cellCont.ColumnSpan(cell.ColSpan);
 
+		DataType cellDataType = DataType.String;
+		String? cellFormat = null;
+		var bind = cell.GetBindRuntime("Content");
+		if (bind != null)
+		{
+			cellDataType = bind.DataType;
+			cellFormat = bind.Format;
+		}
+
 		var ci = cellCont.ApplyCellDecoration(cell.RuntimeStyle);
 
 		// TODO: style here
@@ -106,7 +115,7 @@ internal class TableComposer : FlowElementComposer
 		if (_accessFuncs.TryGetValue(cell, out var contentFunc))
 		{
 			var value = _context.Engine.Invoke(contentFunc, data);
-			ci.Text(_context.ValueToString(value)).ApplyText(cell.RuntimeStyle);
+			ci.Text(_context.ValueToString(value, cellDataType, cellFormat)).ApplyText(cell.RuntimeStyle);
 			return;
 		}
 

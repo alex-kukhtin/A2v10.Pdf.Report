@@ -14,13 +14,18 @@ public class StyleBag
 		_styles.Add("Text.Title", new RuntimeStyle()
 		{
 			FontSize = 16F,
-			PaddingVertical = 10F
+			Margin = Thickness.FromString("10pt,0")
 		});
-		
+
+		_styles.Add("Table.Details", new RuntimeStyle()
+		{
+			Border = 1F,
+			Margin = Thickness.FromString("10pt,0")
+		});
+
 		_styles.Add("Table.Details>Header>Row>Cell", new RuntimeStyle()
 		{
-			PaddingVertical = 2F,
-			PaddingHorizontal = 4F,
+			Padding = Thickness.FromString("2pt,4pt"),
 			VAlign = VertAlign.Middle,
 			Border = .2F,
 			Background = "#f5f5f5"
@@ -28,15 +33,13 @@ public class StyleBag
 
 		_styles.Add("Table.Details>Body>Row>Cell", new RuntimeStyle()
 		{
-			PaddingVertical = 2F,
-			PaddingHorizontal = 4F,
+			Padding = Thickness.FromString("2pt,4pt"),
 			Border = .2F,
 		});
 
 		_styles.Add("Table.Details>Footer>Row>Cell", new RuntimeStyle()
 		{
-			PaddingVertical = 2F,
-			PaddingHorizontal = 4F,
+			Padding = Thickness.FromString("2pt,4pt"),
 			Border = .2F,
 			Bold = true
 		});
@@ -45,7 +48,7 @@ public class StyleBag
 		_styles.Add("Table.Default>Body>Row>Cell", new RuntimeStyle()
 		{
 			Border = .2F,
-			Padding = 5F
+			Padding = Thickness.FromString("5pt")
 		});
 	}
 

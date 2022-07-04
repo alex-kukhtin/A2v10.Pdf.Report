@@ -18,11 +18,6 @@ internal class TextComposer : FlowElementComposer
 		_context = context;
 	}
 
-	void ApplyStyles(ContentElement elem, TextSpanDescriptor textSpan)
-	{
-		//textSpan.Bold();
-	}
-
 	void ApplyRuntimeStyle(TextDescriptor descr)
 	{
 		var rs = _text.RuntimeStyle;
@@ -30,10 +25,23 @@ internal class TextComposer : FlowElementComposer
 			return;
 		var ts = QuestPDF.Infrastructure.TextStyle.Default;
 		if (rs.FontSize != null)
-		{
 			ts = ts.FontSize(rs.FontSize.Value);
-		}
+		if (rs.Bold != null && rs.Bold.Value)
+			ts = ts.Bold();
+		if (rs.Italic != null && rs.Italic.Value)
+			ts = ts.Italic();
 		descr.DefaultTextStyle(ts);
+	}
+
+	void ApplyRuntimeStyle(TextSpanDescriptor descr, ContentElement elem)
+	{
+		var rs = elem.RuntimeStyle;
+		if (rs == null)
+			return;
+		if (rs.Bold != null && rs.Bold.Value)
+			descr = descr.Bold();
+		if (rs.Italic != null && rs.Italic.Value)
+			descr = descr.Italic();
 	}
 
 	internal override void Compose(IContainer container)
@@ -51,7 +59,9 @@ internal class TextComposer : FlowElementComposer
 				{
 					var res = txt.Span(val);
 					if (elem is ContentElement contElem)
-						ApplyStyles(contElem, res);
+					{
+						ApplyRuntimeStyle(res, contElem);
+					}
 				}
 			}
 		});

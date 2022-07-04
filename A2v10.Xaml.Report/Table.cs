@@ -36,5 +36,6 @@ public class Table : FlowElement
 			b.ApplyStyles(sel + ">Body", styles);
 		foreach (var f in Footer)
 			f.ApplyStyles(sel + ">Footer", styles);
+		ApplyStylesSelf();
 	}
 }

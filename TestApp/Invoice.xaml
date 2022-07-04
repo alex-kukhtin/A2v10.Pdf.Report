@@ -4,20 +4,20 @@
 		<Text Align="Right">
 			Top of page (default text)
 		</Text>
-		<Text Style="Title" Align="Center">
+		<Text Style="Title" Align="Center" Italic="True">
 			Видаткова накладна №
-			<Span Content="{Bind Document.No}"/>
+			<Span Content="{Bind Document.Id}"/>
 			від
-			<Span Content="{Bind Document.Date, Format='D'}" />
+			<Span Content="{Bind Document.Date, DataType=Date, Format='D'}"/>
 		</Text>
-		<Table Columns="1fr,50pt,30mm,120mm">
+		<Table Columns="1fr,50pt,30mm,120mm" Margin="5mm,2mm">
 			<TableRow>
 				<TableCell>
 				</TableCell>
 				<TableCell>@[Localize]</TableCell>
-				<TableCell Content="{Bind Document.Date, Format='D'}"/>
+				<TableCell Content="{Bind Document.Date, DataType=Date}"/>
 				<TableCell>
-					<Table ItemsSource="{Bind Document.Rows}">
+					<Table ItemsSource="{Bind Document.StockRows}">
 						<Table.Columns>
 							<TableColumn />
 							<TableColumn />
@@ -32,13 +32,13 @@
 				</TableCell>
 			</TableRow>
 		</Table>
-		<Table ItemsSource="{Bind Document.Rows}" Style="Details"
-			   Columns="1fr,2cm,25mm,25mm,25mm">
+		<Table ItemsSource="{Bind Document.StockRows}" Style="Details"
+			   Columns="1fr,2cm,20mm,28mm,28mm">
 			<Table.Header>
 				<TableRow>
 					<TableCell RowSpan="2" Align="Right">Entity</TableCell>
 					<TableCell ColSpan="2">Qty</TableCell>
-					<TableCell RowSpan="2">Price</TableCell>
+					<TableCell RowSpan="2" Padding="8mm,0">Price</TableCell>
 					<TableCell RowSpan="2" Align="Center">Sum</TableCell>
 				</TableRow>
 				<TableRow>
@@ -47,15 +47,15 @@
 				</TableRow>
 			</Table.Header>
 			<TableRow>
-				<TableCell Content="{Bind Entity.Name}"/>
-				<TableCell Content="{Bind Qty}" Align="Right"/>
-				<TableCell Content="{Bind Qty}"/>
-				<TableCell Content="{Bind Price}"/>
-				<TableCell Content="{Bind Sum}" Align="Center"/>
+				<TableCell Content="{Bind Item.Name}"/>
+				<TableCell Content="{Bind Qty, Format='C2'}" Align="Right"/>
+				<TableCell Content="{Bind Qty, DataType=Number}"/>
+				<TableCell Content="{Bind Price, DataType=Currency}"/>
+				<TableCell Content="{Bind Sum, DataType=Currency}" Align="Center"/>
 			</TableRow>
 			<Table.Footer>
 				<TableRow>
-					<TableCell Content="{Bind Document.Sum}" ColSpan="4" Align="Right"/>
+					<TableCell Content="{Bind Document.Sum, DataType=Currency}" ColSpan="4" Align="Right"/>
 				</TableRow>
 			</Table.Footer>
 		</Table>

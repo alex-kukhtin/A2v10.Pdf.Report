@@ -10,6 +10,12 @@ public class XamlElement : ISupportBinding
 	public TextAlign? Align { get; init; }
 	public VertAlign? VAlign { get; init; }
 
+	public Boolean? Bold { get; init; }
+	public Boolean? Italic { get; init; }
+
+	public Thickness? Margin { get; init ;}
+	public Thickness? Padding { get; init; }
+
 	BindImpl? _bindImpl;
 
 	#region ISupportBinding
@@ -51,6 +57,14 @@ public class XamlElement : ISupportBinding
 			GetRuntimeStyle().Align = Align;
 		if (VAlign != null)
 			GetRuntimeStyle().VAlign = VAlign;
+		if (Bold != null)
+			GetRuntimeStyle().Bold = Bold;
+		if (Italic != null)
+			GetRuntimeStyle().Italic = Italic;
+		if (Margin != null)
+			GetRuntimeStyle().Margin = Margin;
+		if (Padding != null)
+			GetRuntimeStyle().Padding = Padding;
 	}
 
 	public virtual void ApplyStyles(String selector, StyleBag styles)

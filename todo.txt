@@ -1,8 +1,5 @@
 
-6. Bind. Formats
 9. Page Margins, PageSize, Orientation
 10. Font Styles
 12. Library versions
-13. Separate package for A2v10 platform
-14. Table. Padding, Border
-15. Formats!!!!
+14. RuntimeStyle Border

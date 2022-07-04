@@ -15,3 +15,14 @@ public enum VertAlign
 	Middle,
 	Bottom
 }
+
+public enum DataType
+{
+	String,
+	Date,
+	Time,
+	DateTime,
+	Number,
+	Currency
+}
+

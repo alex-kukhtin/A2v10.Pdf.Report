@@ -13,6 +13,25 @@ namespace A2v10.Pdf.Report;
 internal static class DecorationStyles
 {
 
+	public static IContainer ApplyPadding(this IContainer container, Thickness? thickness)
+	{
+		if (thickness == null)
+			return container;
+		var pad = thickness.All();
+		if (pad != null && !pad.IsEmpty())
+			return container.Padding(pad.Value, Extensions.GetUnit(pad.Unit));
+
+		if (!thickness.Top.IsEmpty())
+			container = container.PaddingTop(thickness.Top.Value, Extensions.GetUnit(thickness.Top.Unit));
+		if (!thickness.Right.IsEmpty())
+			container = container.PaddingRight(thickness.Right.Value, Extensions.GetUnit(thickness.Right.Unit));
+		if (!thickness.Bottom.IsEmpty())
+			container = container.PaddingBottom(thickness.Bottom.Value, Extensions.GetUnit(thickness.Bottom.Unit));
+		if (!thickness.Left.IsEmpty())
+			container = container.PaddingLeft(thickness.Left.Value, Extensions.GetUnit(thickness.Left.Unit));
+		return container;
+	}
+
 	public static IContainer ApplyAlign(this IContainer container, RuntimeStyle? style)
 	{
 		if (style == null)
@@ -53,17 +72,12 @@ internal static class DecorationStyles
 	{
 		if (style == null)
 			return container;
+		container = container.ApplyPadding(style.Margin);
 		if (style.Background != null)
 			container = container.Background(style.Background);
 		if (style.Border != null)
 			container = container.Border(style.Border.Value);
-		container = ApplyAlign(container, style);
-		if (style.PaddingVertical != null)
-			container = container.PaddingVertical(style.PaddingVertical.Value);
-		if (style.PaddingHorizontal != null)
-			container = container.PaddingHorizontal(style.PaddingHorizontal.Value);
-		if (style.Padding != null)
-			container = container.Padding(style.Padding.Value);
+		container = container.ApplyPadding(style.Padding).ApplyAlign(style);
 		return container;
 	}
 

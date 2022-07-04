@@ -31,6 +31,8 @@ public class Bind : MarkupExtension, ISupportBinding
 
 	public String? Path { get; init; }
 
+	public DataType DataType { get; init; }
+
 	public String? Format { get; init; }
 
 	public BindRuntime Runtime()
@@ -38,7 +40,8 @@ public class Bind : MarkupExtension, ISupportBinding
 		return new BindRuntime()
 		{
 			Path = this.Path,
-			Format = this.Format
+			Format = this.Format,
+			DataType = this.DataType
 		};
 	}
 

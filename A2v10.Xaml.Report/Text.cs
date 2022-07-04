@@ -25,16 +25,24 @@ public class Text : FlowElement
 
 	public override void ApplyStyles(String selector, StyleBag styles)
 	{
-		var sel = selector + ">Text";
-		if (Style != TextStyle.Default)
-			sel += "." + Style;
+		var sel = $"Text.{Style}";
 		_runtimeStyle = styles.GetRuntimeStyle(sel);
 		ApplyStylesSelf();
+		foreach (var inl in Inlines)
+		{
+			if (inl is XamlElement inlXaml)
+				inlXaml.ApplyStyles(sel + ">Span", styles);
+		}
 	}
 }
 
 public class Span : ContentElement
 {
+	public override void ApplyStyles(String selector, StyleBag styles)
+	{
+		_runtimeStyle = styles.GetRuntimeStyle(selector);
+		ApplyStylesSelf();
+	}
 }
 
 

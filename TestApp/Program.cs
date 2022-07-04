@@ -31,10 +31,10 @@ internal static class Program
 
 		var dbContext = new SqlDbContext(prof, config, loc);
 
-		var dm = dbContext.LoadModel(null, "a2demo.[Waybill.Load]", new ExpandoObject()
+		var dm = dbContext.LoadModel(null, "doc.[Document.Stock.Report]", new ExpandoObject()
 		{
 			{ "UserId", 99 },
-			{ "Id", 220 }
+			{ "Id", 444 }
 		});
 
 		var localizer = new MockLocalizer();
