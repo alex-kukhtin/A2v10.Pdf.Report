@@ -32,6 +32,25 @@ internal static class DecorationStyles
 		return container;
 	}
 
+	public static IContainer ApplyBorder(this IContainer container, Thickness? thickness)
+	{
+		if (thickness == null)
+			return container;
+		var pad = thickness.All();
+		if (pad != null && !pad.IsEmpty())
+			return container.Border(pad.Value, Extensions.GetUnit(pad.Unit));
+
+		if (!thickness.Top.IsEmpty())
+			container = container.BorderTop(thickness.Top.Value, thickness.Top.Unit.ToUnit());
+		if (!thickness.Right.IsEmpty())
+			container = container.BorderRight(thickness.Right.Value, thickness.Right.Unit.ToUnit());
+		if (!thickness.Bottom.IsEmpty())
+			container = container.BorderBottom(thickness.Bottom.Value, thickness.Bottom.Unit.ToUnit());
+		if (!thickness.Left.IsEmpty())
+			container = container.BorderLeft(thickness.Left.Value, thickness.Left.Unit.ToUnit());
+		return container;
+	}
+
 	public static IContainer ApplyAlign(this IContainer container, RuntimeStyle? style)
 	{
 		if (style == null)
@@ -76,7 +95,7 @@ internal static class DecorationStyles
 		if (style.Background != null)
 			container = container.Background(style.Background);
 		if (style.Border != null)
-			container = container.Border(style.Border.Value);
+			container = container.ApplyBorder(style.Border);
 		container = container.ApplyPadding(style.Padding).ApplyAlign(style);
 		return container;
 	}

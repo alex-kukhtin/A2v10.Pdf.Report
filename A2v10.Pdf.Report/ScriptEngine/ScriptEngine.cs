@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
-
+using System.Globalization;
 using Jint;
 using Jint.Native;
 
@@ -12,18 +12,27 @@ namespace A2v10.Pdf.Report;
 internal class ScriptEngine
 {
 	private Engine _engine;
-	
-	public ScriptEngine(ExpandoObject model)
+	private CultureInfo _culture;
+
+	public ScriptEngine(ExpandoObject model, CultureInfo cultureInfo, String? code)
 	{
+		_culture = cultureInfo;
 		_engine = new Engine(opts =>
 		{
 			opts.Strict = true;
 			//opts.Debugger.Enabled = true;
-			opts.TimeZone = TimeZoneInfo.Utc;
+			opts.LocalTimeZone(TimeZoneInfo.Utc);
+			opts.Culture(cultureInfo);
 		});
+		if (!String.IsNullOrEmpty(code))
+			_engine.Evaluate(code);
+
 		// all properties as Root objects
 		foreach (var item in model)
 			_engine.SetValue(item.Key, item.Value);
+
+		_engine.SetValue("spell", Spell);
+		_engine.SetValue("formatDate", FormatDate);
 	}
 
 	public IList<ExpandoObject> EvaluateCollection(String expression)
@@ -49,5 +58,17 @@ internal class ScriptEngine
 	public Object Invoke(JsValue func, ExpandoObject? data)
 	{
 		return _engine.Invoke(func, data).ToObject();
+	}
+
+	static String Spell(Object value)
+	{
+		return "Spell for : " + value.ToString();
+	}
+
+	String FormatDate(Object value, String format)
+	{
+		if (value is DateTime valDate)
+			return valDate.ToString(format, _culture);
+		return "Invalid date";
 	}
 }

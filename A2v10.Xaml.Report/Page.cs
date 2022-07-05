@@ -9,7 +9,7 @@ namespace A2v10.Xaml.Report;
 public class Page : XamlElement
 {
 	public String? Title { get; init; }
-
+	public String? Code { get; init; }
 	public ColumnCollection Columns { get; init; } = new ColumnCollection();
 
 	public override void ApplyStyles(String selector, StyleBag styles)

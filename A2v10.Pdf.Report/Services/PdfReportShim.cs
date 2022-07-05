@@ -12,11 +12,19 @@ public class PdfReportShim : IPdfReportShim
 {
 	private IReportLocalizer? _localizer = null;
 
-	public Stream Build(string path, ExpandoObject data)
+	public Stream Build(String path, ExpandoObject data)
 	{
 		if (_localizer == null)
 			throw new InvalidOperationException("PdfReportShim. _localizer is null");
 		var rep = new PdfBuilder(_localizer, path, data);
+		return rep.Build();
+	}
+
+	public Stream Build(Stream stream, ExpandoObject data)
+	{
+		if (_localizer == null)
+			throw new InvalidOperationException("PdfReportShim. _localizer is null");
+		var rep = new PdfBuilder(_localizer, stream, data);
 		return rep.Build();
 	}
 

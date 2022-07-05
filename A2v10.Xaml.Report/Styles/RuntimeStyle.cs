@@ -8,7 +8,6 @@ namespace A2v10.Xaml.Report;
 public class RuntimeStyle
 {
 	public Single? FontSize { get; set; }
-	public Single? Border { get; set; }
 	public TextAlign? Align { get; set; }
 	public VertAlign? VAlign { get; set; }
 	public String? Background {get; set;}
@@ -17,6 +16,7 @@ public class RuntimeStyle
 
 	public Thickness? Margin { get; set; }
 	public Thickness? Padding { get; set; }
+	public Thickness? Border { get; set; }
 
 	public RuntimeStyle Clone()
 	{

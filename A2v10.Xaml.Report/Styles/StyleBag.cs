@@ -9,46 +9,45 @@ public class StyleBag
 {
 	public Dictionary<String, RuntimeStyle> _styles = new();
 
+	const String THIN_BORDER = ".2pt";
 	public StyleBag()
 	{
 		_styles.Add("Text.Title", new RuntimeStyle()
 		{
-			FontSize = 16F,
+			FontSize = 14F,
 			Margin = Thickness.FromString("10pt,0")
 		});
 
 		_styles.Add("Table.Details", new RuntimeStyle()
 		{
-			Border = 1F,
+			Border = Thickness.FromString("1pt"),
 			Margin = Thickness.FromString("10pt,0")
 		});
 
 		_styles.Add("Table.Details>Header>Row>Cell", new RuntimeStyle()
 		{
-			Padding = Thickness.FromString("2pt,4pt"),
+			Padding = Thickness.FromString("1pt,4pt"),
 			VAlign = VertAlign.Middle,
-			Border = .2F,
+			Border = Thickness.FromString(THIN_BORDER),
 			Background = "#f5f5f5"
 		});
 
 		_styles.Add("Table.Details>Body>Row>Cell", new RuntimeStyle()
 		{
-			Padding = Thickness.FromString("2pt,4pt"),
-			Border = .2F,
+			Padding = Thickness.FromString("1pt,4pt"),
+			Border = Thickness.FromString(THIN_BORDER),
 		});
 
 		_styles.Add("Table.Details>Footer>Row>Cell", new RuntimeStyle()
 		{
-			Padding = Thickness.FromString("2pt,4pt"),
-			Border = .2F,
+			Padding = Thickness.FromString("1pt,4pt"),
+			Border = Thickness.FromString(THIN_BORDER),
 			Bold = true
 		});
 
-
 		_styles.Add("Table.Default>Body>Row>Cell", new RuntimeStyle()
 		{
-			Border = .2F,
-			Padding = Thickness.FromString("5pt")
+			//Padding = Thickness.FromString("1pt,0")
 		});
 	}
 

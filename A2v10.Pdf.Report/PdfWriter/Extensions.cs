@@ -16,6 +16,7 @@ internal static class Extensions
 		{
 			Table table => new TableComposer(table, context),
 			Text text => new TextComposer(text, context),
+			Line line => new LineComposer(line, context),
 			_ => throw new InvalidOperationException($"There is no composer for {elem.GetType()}")
 		};
 	}
@@ -28,6 +29,11 @@ internal static class Extensions
 			desc.ConstantColumn(column.Width.Value, GetUnit(column.Width.Unit));
 		else
 			desc.RelativeColumn(1);
+	}
+
+	public static Unit ToUnit(this String unit)
+	{
+		return GetUnit(unit);
 	}
 
 	public static Unit GetUnit(String ext)

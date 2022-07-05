@@ -5,15 +5,17 @@ using QuestPDF.Drawing;
 
 using QuestPDF.Fluent;
 
+using A2v10.Xaml.Report;
+
 namespace A2v10.Pdf.Report;
 
 internal class ReportDocument : IDocument
 {
-	private readonly A2v10.Xaml.Report.Page _report;
+	private readonly Page _page;
 	private readonly RenderContext _context;
-	public ReportDocument(A2v10.Xaml.Report.Page report, RenderContext context)
+	public ReportDocument(Page page, RenderContext context)
 	{
-		_report = report;
+		_page = page;
 		_context = context;
 	}
 
@@ -21,15 +23,17 @@ internal class ReportDocument : IDocument
 	{
 		container.Page(page =>
 		{
-			new PageComposer(_report, _context).Compose(page);
+			new PageComposer(_page, _context).Compose(page);
 		});
 	}
 
 	public DocumentMetadata GetMetadata()
 	{
-		var title = _report.Title;
+		var title = _context.GetValueAsString(_page, "Title");
+		if (title == null)
+			title = _page.Title;
 		var md = DocumentMetadata.Default;
-		md.Title = title;// "Title from C# code";
+		md.Title = title;
 		return md;
 	}
 }

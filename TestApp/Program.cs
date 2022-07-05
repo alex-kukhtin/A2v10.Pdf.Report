@@ -40,15 +40,20 @@ internal static class Program
 		var localizer = new MockLocalizer();
 
 		var path = "C:/Git/A2v10.Pdf.Report/TestApp/Invoice.xaml";
-		var builder = new PdfBuilder(localizer, path, dm.Root);
 
 		var outPath = "sample.pdf";
-		DeleteFile(outPath);
 
-		//builder.Read();
-		using (var outFile = File.OpenWrite(outPath))
+		using (var stream = File.OpenRead(path))
 		{
-			builder.Build(outFile);
+			var builder = new PdfBuilder(localizer, stream, dm.Root);
+
+			DeleteFile(outPath);
+
+			//builder.Read();
+			using (var outFile = File.OpenWrite(outPath))
+			{
+				builder.Build(outFile);
+			}
 		}
 		Process.Start("explorer.exe", outPath);
 	}

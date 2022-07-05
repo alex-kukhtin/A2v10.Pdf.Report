@@ -16,6 +16,8 @@ public class XamlElement : ISupportBinding
 	public Thickness? Margin { get; init ;}
 	public Thickness? Padding { get; init; }
 
+	public Thickness? Border { get; init; }
+
 	BindImpl? _bindImpl;
 
 	#region ISupportBinding
@@ -65,6 +67,8 @@ public class XamlElement : ISupportBinding
 			GetRuntimeStyle().Margin = Margin;
 		if (Padding != null)
 			GetRuntimeStyle().Padding = Padding;
+		if (Border != null)
+			GetRuntimeStyle().Border = Border;
 	}
 
 	public virtual void ApplyStyles(String selector, StyleBag styles)

@@ -1,23 +1,47 @@
-﻿<Page xmlns="clr-namespace:A2v10.Xaml.Report;assembly=A2v10.Xaml.Report"
-		Title="I am the title">
+﻿<Page xmlns="clr-namespace:A2v10.Xaml.Report;assembly=A2v10.Xaml.Report">
+	<Page.Code>
+		<![CDATA[
+		function test() {
+			return " test_value_from_xaml";
+		}
+		
+		const docTitle = (doc) => `Видаткова накладна № ${doc.Id} від ${formatDate(doc.Date, 'D')}`;
+		
+		]]>
+	</Page.Code>
+	<Page.Title>
+		<Bind Expression="`Видаткова накладна № ${Document.Id} від ${formatDate(Document.Date, 'D')}`"/>
+	</Page.Title>
 	<Column>
 		<Text Align="Right">
 			Top of page (default text)
 		</Text>
+		<Line Thickness=".5pt"/>
 		<Text Style="Title" Align="Center" Italic="True">
+			<Span Content="{Bind spell(Document.Sum)}"></Span>
 			Видаткова накладна №
 			<Span Content="{Bind Document.Id}"/>
 			від
 			<Span Content="{Bind Document.Date, DataType=Date, Format='D'}"/>
 		</Text>
-		<Table Columns="1fr,50pt,30mm,120mm" Margin="5mm,2mm">
+		<Text Padding="10pt" Border="1pt" Margin="10pt">
+			<Span Content="{Bind spell(Document.Sum) + test()}"/>
+		</Text>
+		<Text>
+			<Span>
+				<Span.Content>
+					<Bind Expression="docTitle(Document)" />
+				</Span.Content>
+			</Span>
+		</Text>
+		<Table Columns="1*,50pt,30mm,120mm" Margin="5mm,2mm">
 			<TableRow>
 				<TableCell>
 				</TableCell>
 				<TableCell>@[Localize]</TableCell>
 				<TableCell Content="{Bind Document.Date, DataType=Date}"/>
 				<TableCell>
-					<Table ItemsSource="{Bind Document.StockRows}">
+					<Table ItemsSource="{Bind Document.Rows}">
 						<Table.Columns>
 							<TableColumn />
 							<TableColumn />
@@ -32,7 +56,7 @@
 				</TableCell>
 			</TableRow>
 		</Table>
-		<Table ItemsSource="{Bind Document.StockRows}" Style="Details"
+		<Table ItemsSource="{Bind Document.Rows}" Style="Details"
 			   Columns="1fr,2cm,20mm,28mm,28mm">
 			<Table.Header>
 				<TableRow>
@@ -58,6 +82,12 @@
 					<TableCell Content="{Bind Document.Sum, DataType=Currency}" ColSpan="4" Align="Right"/>
 				</TableRow>
 			</Table.Footer>
+		</Table>
+		<Table Margin="1cm,0" Columns="20mm,50mm,1fr,20mm,50mm">
+			<TableRow>
+				<TableCell>Відпустив</TableCell>
+				<TableCell Border="0,0,1pt,0"></TableCell>
+			</TableRow>
 		</Table>
 	</Column>
 </Page>

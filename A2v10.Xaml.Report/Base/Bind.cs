@@ -26,10 +26,10 @@ public class Bind : MarkupExtension, ISupportBinding
 
 	public Bind(String path)
 	{
-		Path = path;	
+		Expression = path;	
 	}
 
-	public String? Path { get; init; }
+	public String? Expression { get; init; }
 
 	public DataType DataType { get; init; }
 
@@ -39,7 +39,7 @@ public class Bind : MarkupExtension, ISupportBinding
 	{
 		return new BindRuntime()
 		{
-			Path = this.Path,
+			Expression = this.Expression,
 			Format = this.Format,
 			DataType = this.DataType
 		};

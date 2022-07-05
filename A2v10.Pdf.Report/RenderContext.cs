@@ -10,11 +10,10 @@ internal class RenderContext
 {
 	private readonly IReportLocalizer _localizer;
 	private readonly CultureInfo _formatProvider;
-	public RenderContext(IReportLocalizer localizer, ExpandoObject model)
+	public RenderContext(IReportLocalizer localizer, ExpandoObject model, String? code)
 	{
 		_localizer = localizer;
 		DataModel = model;
-		Engine = new ScriptEngine(model);
 		var  clone = _localizer.CurrentCulture.Clone();
 		if (clone is CultureInfo cloneCI && cloneCI != null)
 			_formatProvider = cloneCI;
@@ -22,6 +21,8 @@ internal class RenderContext
 			throw new ArgumentNullException("Current culture");
 		_formatProvider.NumberFormat.CurrencyGroupSeparator = "\u00A0";
 		_formatProvider.NumberFormat.NumberGroupSeparator = "\u00A0";
+
+		Engine = new ScriptEngine(model, _formatProvider, code);
 	}
 
 	public ScriptEngine Engine { get; }
@@ -50,7 +51,7 @@ internal class RenderContext
 		return _localizer.Localize(value.ToString()) ?? String.Empty;
 	}
 
-	public String? GetValueAsString(Object value)
+	public String? GetValueAsString(Object value, String propertyName = "Content")
 	{
 		if (value == null)
 			return null;
@@ -61,12 +62,22 @@ internal class RenderContext
 			var contBind = contElem.GetBindRuntime("Content");
 			if (contBind != null)
 			{
-				var val = Engine.EvaluateValue(contBind.Path);
+				var val = Engine.EvaluateValue(contBind.Expression);
 				if (val != null)
 					return ValueToString(val, contBind.DataType, contBind.Format);
 			}
 			else if (contElem.Content != null)
 				return ValueToString(contElem.Content);
+		}
+		else if (value is XamlElement xamlElem)
+		{
+			var contBind = xamlElem.GetBindRuntime(propertyName);
+			if (contBind != null)
+			{
+				var val = Engine.EvaluateValue(contBind.Expression);
+				if (val != null)
+					return ValueToString(val, contBind.DataType, contBind.Format);
+			}
 		}
 		return null;
 	}

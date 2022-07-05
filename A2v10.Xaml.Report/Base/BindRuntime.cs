@@ -6,7 +6,7 @@ namespace A2v10.Xaml.Report;
 
 public class BindRuntime
 {
-	public String? Path { get; init; }
+	public String? Expression { get; init; }
 	public String? Format { get; init; }
 	public DataType DataType { get; init; }
 }

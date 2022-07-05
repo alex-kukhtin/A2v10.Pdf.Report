@@ -51,10 +51,10 @@ internal class TableComposer : FlowElementComposer
 				tblDescr.Header(ComposeHeader);
 
 			var isbind = _table.GetBindRuntime("ItemsSource");
-			if (isbind != null && isbind.Path != null)
+			if (isbind != null && isbind.Expression != null)
 			{
 				CreateAccessFunc(_table.Body);
-				var coll = _context.Engine.EvaluateCollection(isbind.Path);
+				var coll = _context.Engine.EvaluateCollection(isbind.Expression);
 				if (coll != null)
 					foreach (var elem in coll)
 						ComposeRowCollection(CellKind.Body, tblDescr, _table.Body, elem);
@@ -81,9 +81,9 @@ internal class TableComposer : FlowElementComposer
 			foreach (var cell in row.Cells)
 			{
 				var cont = cell.GetBindRuntime("Content");
-				if (cont != null && cont.Path != null)
+				if (cont != null && cont.Expression != null)
 				{
-					var func = _context.Engine.CreateAccessFunction(cont.Path);
+					var func = _context.Engine.CreateAccessFunction(cont.Expression);
 					_accessFuncs.Add(cell, func);
 				}
 			}

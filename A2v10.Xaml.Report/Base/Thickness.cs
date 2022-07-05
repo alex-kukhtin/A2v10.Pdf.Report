@@ -101,11 +101,8 @@ public class ThicknessConverter : TypeConverter
 	{
 		if (value == null)
 			return null;
-		if (value is String)
-		{
-			String strVal = value.ToString();
+		if (value is String strVal)
 			return Thickness.FromString(strVal);
-		}
 		throw new XamlException($"Invalid Thickness value '{value}'");
 	}
 }

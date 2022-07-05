@@ -12,7 +12,8 @@ namespace A2v10.Pdf.Report;
 
 public class PdfBuilder
 {
-	private readonly String _templatePath;
+	private readonly String? _templatePath;
+	private readonly Stream? _templateStream;
 	private readonly ExpandoObject _model;
 	private readonly IReportLocalizer _localizer;
 
@@ -21,7 +22,15 @@ public class PdfBuilder
 		_localizer = localizer;
 		_templatePath = templatePath;
 		_model = model;
-	}	
+		_templateStream = null;
+	}
+
+	public PdfBuilder(IReportLocalizer localizer, Stream stream, ExpandoObject model)
+	{
+		_localizer = localizer;
+		_templateStream = stream;
+		_model = model;
+	}
 
 	public Stream Build()
 	{
@@ -34,15 +43,20 @@ public class PdfBuilder
 	public Page Read()
 	{
 		var rdr = new TemplateReader();
-		return rdr.ReadReport(_templatePath);
+		if (_templateStream != null)
+			return rdr.ReadReport(_templateStream);
+		else if (_templatePath != null)
+			return rdr.ReadReport(_templatePath);
+		throw new ArgumentNullException(nameof(_templatePath));
 	}
+
+
 
 	public void Build(Stream stream)
 	{
-		var rdr = new TemplateReader();
-		var rep = rdr.ReadReport(_templatePath);
-		var context = new RenderContext(_localizer, _model);
-		var doc = new ReportDocument(rep, context);
+		var page = Read();
+		var context = new RenderContext(_localizer, _model, page.Code);
+		var doc = new ReportDocument(page, context);
 		doc.GeneratePdf(stream);
 	}
 }
