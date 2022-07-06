@@ -7,7 +7,8 @@ using System.Text;
 
 namespace A2v10.Pdf.Report;
 
-public class SpellString
+
+public static class SpellString
 {
 	private static String[] _hundreds = new String[10] {
 		String.Empty,
@@ -43,7 +44,7 @@ public class SpellString
 
 	private static String[] _units = new String[20]
 	{
-		String.Empty,
+		"нуль",
 		"один ",
 		"два ",
 		"три ",
@@ -85,10 +86,15 @@ public class SpellString
 		"трильйонів "
 	};
 
-	static Int32[] _intTypes = new Int32[5] 
+	private enum _SpellType {
+		zero,
+		one,
+		two
+	}
+
+	static _SpellType[] _intTypes = new _SpellType[5] 
 	{
-	  //0,1,2,3,4, -> default is 0
-		0,1,2,2,2,
+		_SpellType.zero ,_SpellType.one,_SpellType.two,_SpellType.two,_SpellType.two,
 	};
 
 
@@ -103,12 +109,16 @@ public class SpellString
 			intPart = vals[0];
 			fractPart = vals[1];
 		}
-		return SpellNumber(intPart);
+		_SpellType type;
+		return _spellNumber(intPart, out type);
 	}
 
-	public static String SpellNumber(String number)
+	private static String _spellNumber(String number, out _SpellType type)
 	{
-		Int32 type = 0;
+		type = _SpellType.zero;
+		if (String.IsNullOrEmpty(number) || number == "0" || number == "00")
+			return _units[0];
+
 		Boolean woman = true;
 		Int32 len = number.Length;
 
@@ -154,14 +164,14 @@ public class SpellString
 			if (unit < 5)
 				type = _intTypes[unit];
 			else
-				type = 0;
+				type = _SpellType.zero;
 			if (i == 1)
 			{ // thouthands
 				if (unit == 1)
 					suffix = _untisW[1];
 				else if (unit == 2)
 					suffix = _untisW[2];
-				type = 0; // 1000 (2000, 3000 еtc) гривен
+				type = 0; // 1000 (2000, 3000 еtc) UAH
 			}
 			sb.Append(suffix);
 
@@ -180,6 +190,7 @@ public class SpellString
 					break;
 			}
 		}
+		// remove last space
 		if (sb[sb.Length - 1] == ' ')
 			sb.Remove(sb.Length - 1, 1);
 		return sb.ToString();
