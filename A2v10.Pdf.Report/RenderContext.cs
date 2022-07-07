@@ -30,6 +30,9 @@ internal class RenderContext
 
 	public String ValueToString(Object value, DataType dataType = DataType.String, String? format = null)
 	{
+		if (value == null)
+			return String.Empty;
+
 		var ni = _localizer.CurrentCulture.Clone();
 
 		if (!String.IsNullOrEmpty(format))
@@ -80,6 +83,21 @@ internal class RenderContext
 			}
 		}
 		return null;
+	}
+
+	public Boolean IsVisible(XamlElement elem)
+	{
+		var ifbind = elem.GetBindRuntime("If");
+		if (ifbind == null)
+		{
+			if (elem.If != null && !elem.If.Value)
+				return false;
+			return true;
+		}
+		var val = Engine.EvaluateValue(ifbind.Expression);
+		if (val is Boolean boolVal)
+			return boolVal;
+		return true;
 	}
 
 	public void ApplyTextStyle(TextStyle textStyle)

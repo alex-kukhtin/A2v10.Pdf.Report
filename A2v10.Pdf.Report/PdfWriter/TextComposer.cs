@@ -48,6 +48,8 @@ internal class TextComposer : FlowElementComposer
 
 	internal override void Compose(IContainer container)
 	{
+		if (!_context.IsVisible(_text))
+			return;
 		container.ApplyDecoration(_text.RuntimeStyle).Text(txt =>
 		{
 			//_context.ApplyTextStyle(txt, _text.Style);

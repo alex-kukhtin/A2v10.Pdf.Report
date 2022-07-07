@@ -13,7 +13,7 @@
 		<Bind Expression="`Видаткова накладна № ${Document.Id} від ${formatDate(Document.Date, 'D')}`"/>
 	</Page.Title>
 	<Column>
-		<Text Align="Right">
+		<Text Align="Right" If="{Bind Document.Cond}">
 			Top of page (default text)
 		</Text>
 		<Line Thickness=".5pt"/>
@@ -56,9 +56,10 @@
 			</TableRow>
 		</Table>
 		<Table ItemsSource="{Bind Document.Rows}" Style="Details"
-			   Columns="1fr,2cm,20mm,28mm,28mm">
+			   Columns="1cm,1fr,2cm,20mm,28mm,28mm">
 			<Table.Header>
 				<TableRow>
+					<TableCell RowSpan="2">Art</TableCell>
 					<TableCell RowSpan="2" Align="Right">Entity</TableCell>
 					<TableCell ColSpan="2">Qty</TableCell>
 					<TableCell RowSpan="2" Padding="8mm,0">Price</TableCell>
@@ -70,6 +71,7 @@
 				</TableRow>
 			</Table.Header>
 			<TableRow>
+				<TableCell Content="{Bind Item.Article}"/>
 				<TableCell Content="{Bind Item.Name}"/>
 				<TableCell Content="{Bind Qty, Format='C2'}" Align="Right"/>
 				<TableCell Content="{Bind Qty, DataType=Number}"/>
@@ -82,18 +84,18 @@
 				</TableRow>
 			</Table.Footer>
 		</Table>
-		<Table Margin="1cm,0" Columns="20mm,50mm,1fr,20mm,50mm">
+		<Table Margin="1cm,0" Columns="20mm,50mm,1fr,20mm,50mm" If="{Bind Document.Cond}">
 			<TableRow>
 				<TableCell>Відпустив</TableCell>
 				<TableCell Border="0,0,1pt,0"></TableCell>
 				<TableCell />
-				<TableCell Content="Прийняв"/>
+				<TableCell Content="Прийняв" If="{Bind Document.Cond}"/>
 				<TableCell Border="0,0,1pt,0"/>
 			</TableRow>
-			<TableRow>
+			<TableRow If="{Bind Document.Cond}">
 				<TableCell ColSpan="2"/>
 				<TableCell>
-					<Image Margin="5mm" Border="1pt" Padding="1mm"/>
+					<Image Margin="5mm" Border="1pt" Padding="1mm" If="{Bind Document.Cond}"/>
 				</TableCell>
 			</TableRow>
 		</Table>

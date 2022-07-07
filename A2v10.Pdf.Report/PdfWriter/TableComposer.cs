@@ -36,6 +36,8 @@ internal class TableComposer : FlowElementComposer
 
 	internal override void Compose(IContainer container)
 	{
+		if (!_context.IsVisible(_table))
+			return;
 		container.ApplyDecoration(_table.RuntimeStyle).Table(tblDescr =>
 		{
 			tblDescr.ColumnsDefinition(columns =>
@@ -109,13 +111,17 @@ internal class TableComposer : FlowElementComposer
 
 		var ci = cellCont.ApplyCellDecoration(cell.RuntimeStyle);
 
+		if (!_context.IsVisible(cell))
+			return;
+
 		// TODO: style here
 		// var ci = cellCont.Background("#f5f5f5").Border(.2F).Padding(2F);
 
 		if (_accessFuncs.TryGetValue(cell, out var contentFunc))
 		{
 			var value = _context.Engine.Invoke(contentFunc, data);
-			ci.Text(_context.ValueToString(value, cellDataType, cellFormat)).ApplyText(cell.RuntimeStyle);
+			if (value != null)
+				ci.Text(_context.ValueToString(value, cellDataType, cellFormat)).ApplyText(cell.RuntimeStyle);
 			return;
 		}
 
@@ -133,7 +139,12 @@ internal class TableComposer : FlowElementComposer
 
 	private void ComposeRowCollection(CellKind kind, TableDescriptor tbl, TableRowCollection body, ExpandoObject? data = null)
 	{
-		foreach (var cell in body.Cells())
-			ComposeCell(kind, cell, () => tbl.Cell(), data);
+		foreach (var row in body)
+		{
+			if (!_context.IsVisible(row))
+				continue;
+			foreach (var cell in row.Cells)
+				ComposeCell(kind, cell, () => tbl.Cell(), data);
+		}
 	}
 }

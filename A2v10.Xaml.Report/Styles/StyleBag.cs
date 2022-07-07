@@ -15,7 +15,6 @@ public class StyleBag
 		_styles.Add("Text.Title", new RuntimeStyle()
 		{
 			FontSize = 14F,
-			Margin = Thickness.FromString("10pt,0")
 		});
 
 		_styles.Add("Table.Details", new RuntimeStyle()

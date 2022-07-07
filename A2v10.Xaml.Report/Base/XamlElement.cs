@@ -17,8 +17,9 @@ public class XamlElement : ISupportBinding
 
 	public Thickness? Margin { get; init ;}
 	public Thickness? Padding { get; init; }
-
 	public Thickness? Border { get; init; }
+
+	public Boolean? If { get; init; }
 
 	BindImpl? _bindImpl;
 
