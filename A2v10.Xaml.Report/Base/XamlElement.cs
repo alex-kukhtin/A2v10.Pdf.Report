@@ -13,6 +13,8 @@ public class XamlElement : ISupportBinding
 	public Boolean? Bold { get; init; }
 	public Boolean? Italic { get; init; }
 
+	public Single? FontSize { get; init; }
+
 	public Thickness? Margin { get; init ;}
 	public Thickness? Padding { get; init; }
 
@@ -69,9 +71,12 @@ public class XamlElement : ISupportBinding
 			GetRuntimeStyle().Padding = Padding;
 		if (Border != null)
 			GetRuntimeStyle().Border = Border;
+		if (FontSize != null)
+			GetRuntimeStyle().FontSize = FontSize;
 	}
 
 	public virtual void ApplyStyles(String selector, StyleBag styles)
 	{
+		ApplyStylesSelf();
 	}
 }

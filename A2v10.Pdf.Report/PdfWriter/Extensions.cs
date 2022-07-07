@@ -16,6 +16,7 @@ internal static class Extensions
 		{
 			Table table => new TableComposer(table, context),
 			Text text => new TextComposer(text, context),
+			Image image => new ImageComposer(image, context),
 			Line line => new LineComposer(line, context),
 			_ => throw new InvalidOperationException($"There is no composer for {elem.GetType()}")
 		};

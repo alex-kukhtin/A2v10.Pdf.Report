@@ -53,7 +53,6 @@ public class StyleBag
 
 	public RuntimeStyle? GetRuntimeStyle(String selector)
 	{
-		//Console.WriteLine(selector);
 		return FindStyles(selector);
 	}
 

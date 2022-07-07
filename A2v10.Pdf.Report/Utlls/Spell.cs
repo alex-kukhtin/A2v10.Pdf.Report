@@ -5,101 +5,34 @@ using System;
 using System.Globalization;
 using System.Text;
 
-namespace A2v10.Pdf.Report;
+namespace A2v10.Pdf.Report.Utils;
+
+public enum SpellGender
+{
+	Male,
+	Female,
+	Neutral
+}
+
+public enum SpellType
+{
+	zero = 0,
+	one = 1,
+	two = 2
+}
 
 
 public static class SpellString
 {
-	private static String[] _hundreds = new String[10] {
-		String.Empty,
-		"сто ",
-		"двісті ",
-		"триста ",
-		"чотириста ",
-		"п’ятсот ",
-		"шістсот ",
-		"сімсот ",
-		"вісімсот ",
-		"дев’ятсот ",
-	};
-
-	private static String[] _tens = new string[10] {
-		String.Empty,
-		String.Empty,
-		"двадцять ",
-		"тридцять ",
-		"сорок ",
-		"п’ятдесят ",
-		"шістдесят ",
-		"сімдесят ",
-		"вісімдесят ",
-		"дев’яносто "
-	};
-
-	private static String[] _untisW = new String[3] {
-		String.Empty,
-		"одна ",
-		"дві "
-	};
-
-	private static String[] _units = new String[20]
+	static SpellType[] _intTypes = new SpellType[5] 
 	{
-		"нуль",
-		"один ",
-		"два ",
-		"три ",
-		"чотири ",
-		"п’ять ",
-		"шість ",
-		"сім ",
-		"вісім ",
-		"девять ",
-		"десять ",
-		"одинадцять ",
-		"двaнадцять ",
-		"тринадцять ",
-		"чотирнадцять ",
-		"п’ятнадцять ",
-		"шістнадцять ",
-		"сімнадцять ",
-		"вісімнадцять ",
-		"дев’ятнадцять "
+		SpellType.zero ,SpellType.one, SpellType.two, SpellType.two, SpellType.two,
 	};
 
 
-	private static String[] _names = new String[15]
+	public static String Spell(Decimal val, CultureInfo culture, SpellGender gender)
 	{
-		String.Empty,
-		"тисяча ",
-		"мільйон ",
-		"мільяард ",
-		"трильйон ",
-		String.Empty,
-		"тисячі ",
-		"мільйона ",
-		"мільярда ",
-		"трильйона ",
-		String.Empty,
-		"тисяч ",
-		"мільйонів ",
-		"мільярдів ",
-		"трильйонів "
-	};
-
-	private enum _SpellType {
-		zero,
-		one,
-		two
-	}
-
-	static _SpellType[] _intTypes = new _SpellType[5] 
-	{
-		_SpellType.zero ,_SpellType.one,_SpellType.two,_SpellType.two,_SpellType.two,
-	};
-
-
-	public static String Spell(Decimal val)
-	{
+		var nums = LangNumbers.FromCulture(culture);
 		var strPresentation = val.ToString("F2", CultureInfo.InvariantCulture);
 		var vals = strPresentation.Split('.');
 		String intPart = strPresentation;
@@ -109,17 +42,72 @@ public static class SpellString
 			intPart = vals[0];
 			fractPart = vals[1];
 		}
-		_SpellType type;
-		return _spellNumber(intPart, out type);
+		return _spellNumber(intPart, nums, gender, out SpellType type);
 	}
 
-	private static String _spellNumber(String number, out _SpellType type)
+	public static String SpellCurrency(Decimal val, CultureInfo culture, String currencyCode)
 	{
-		type = _SpellType.zero;
-		if (String.IsNullOrEmpty(number) || number == "0" || number == "00")
-			return _units[0];
+		var nums = LangNumbers.FromCulture(culture);
+		var strPresentation = val.ToString("F2", CultureInfo.InvariantCulture);
+		var vals = strPresentation.Split('.');
+		String intPart = strPresentation;
+		String fractPart = String.Empty;
+		if (vals.Length == 2)
+		{
+			intPart = vals[0];
+			fractPart = vals[1];
+		}
 
-		Boolean woman = true;
+		var currencyDesc = CurrencyDescr.FromCulture(culture, currencyCode);
+
+		var sb = new StringBuilder();
+
+		sb.Append(_spellNumber(intPart, nums, currencyDesc.CeilGender, out SpellType type));
+		sb.Append(" ");
+		sb.Append(currencyDesc.NameCeil(type));
+		sb.Append(" ");
+		sb.Append(fractPart);
+		sb.Append(" ");
+		sb.Append(currencyDesc.NameFract(LastNumberFract(fractPart)));
+		sb[0] = Char.ToUpper(sb[0]);
+		return sb.ToString();
+
+	}
+
+	static SpellType LastNumberFract(String fract)
+	{
+		// 0,1,2
+		if (String.IsNullOrEmpty(fract))
+			return SpellType.zero;
+		// xx[\0or или x[\0]
+		Int32 dig = 0;
+		if (fract[1] == '0') {
+			dig = (int)(fract[0] - '0');
+		}  else { 
+			dig = (int)(fract[0] - '0') * 10;
+			dig += (int)(fract[1] - '0');
+		}
+		//0-> 0,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
+		//1-> 1,21,31,
+		//2-> 2,3,4,22,23,24,32,33,34,...
+		if (dig > 19)
+		{
+			// module
+			dig %= 10;
+		}
+		if (dig == 2 || dig == 3 || dig == 4)
+			return SpellType.two;
+		else if (dig == 1)
+			return SpellType.one;
+		return SpellType.zero;
+	}
+
+	private static String _spellNumber(String number, LangNumbers numbers, SpellGender gender, out SpellType type)
+	{
+		type = SpellType.zero;
+		if (String.IsNullOrEmpty(number) || number == "0" || number == "00")
+			return numbers.Null(SpellGender.Male).Trim();
+
 		Int32 len = number.Length;
 
 		StringBuilder sb = new StringBuilder();
@@ -142,57 +130,56 @@ public static class SpellString
 				break;
 		}
 
-		String suffix = String.Empty;
 		for (int i = k; i >= 0; i--)
 		{
-			var three = number.Substring(i * 3, 3);
-			if (three == "000")
+			var trigraph = number.Substring(i * 3, 3);
+			if (trigraph == "000")
 				continue;
-			int hundred = three[2] - '0';
-			int ten = three[1] - '0';
-			int unit = three[0] - '0';
+			int hundred = trigraph[2] - '0';
+			int ten = trigraph[1] - '0';
+			int unit = trigraph[0] - '0';
 
-			sb.Append(_hundreds[hundred]);
+			sb.Append(numbers.Hundred(hundred));
 			if (ten >= 2)
-				sb.Append(_tens[ten]);
+				sb.Append(numbers.Ten(ten));
 			else if (ten == 1)
-				unit += 10;
-			suffix = _units[unit];
-			if (i == 1 || (i == 0 && woman))
-				if (unit < 3)
-					suffix = _untisW[unit];
+				unit += 10;			
 			if (unit < 5)
 				type = _intTypes[unit];
 			else
-				type = _SpellType.zero;
+				type = SpellType.zero;
 			if (i == 1)
-			{ // thouthands
-				if (unit == 1)
-					suffix = _untisW[1];
-				else if (unit == 2)
-					suffix = _untisW[2];
+			{
+				// 1000
 				type = 0; // 1000 (2000, 3000 еtc) UAH
+				sb.Append(numbers.Unit(unit, SpellGender.Female));
 			}
-			sb.Append(suffix);
+			else if (i > 1)
+			{
+				type = SpellType.zero;
+				sb.Append(numbers.Unit(unit, SpellGender.Male));
+			}
+			else if (i == 0)
+				sb.Append(numbers.Unit(unit, gender));
 
 			switch (unit)
 			{
 				case 1:
-					sb.Append(_names[i]);
+					sb.Append(numbers.Name(0, i));
 					break;
 				case 2:
 				case 3:
 				case 4:
-					sb.Append(_names[i + 5]);
+					sb.Append(numbers.Name(1, i));
 					break;
 				default:
-					sb.Append(_names[i + 10]);
+					sb.Append(numbers.Name(2, i));
 					break;
 			}
 		}
 		// remove last space
 		if (sb[sb.Length - 1] == ' ')
 			sb.Remove(sb.Length - 1, 1);
-		return sb.ToString();
+		return sb.ToString().Trim();
 	}
 }

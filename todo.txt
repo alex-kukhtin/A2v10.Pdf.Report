@@ -1,8 +1,4 @@
 
 9. Page Margins, PageSize, Orientation
-10. Font Styles
-12. Library versions
-17. Spell
 18. Draw images
-19. FontSize
 

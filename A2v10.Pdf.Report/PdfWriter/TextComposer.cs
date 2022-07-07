@@ -38,6 +38,8 @@ internal class TextComposer : FlowElementComposer
 		var rs = elem.RuntimeStyle;
 		if (rs == null)
 			return;
+		if (rs.FontSize != null)
+			descr = descr.FontSize(rs.FontSize.Value);
 		if (rs.Bold != null && rs.Bold.Value)
 			descr = descr.Bold();
 		if (rs.Italic != null && rs.Italic.Value)

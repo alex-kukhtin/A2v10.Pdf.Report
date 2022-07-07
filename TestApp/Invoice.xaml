@@ -18,14 +18,13 @@
 		</Text>
 		<Line Thickness=".5pt"/>
 		<Text Style="Title" Align="Center" Italic="True">
-			<Span Content="{Bind spell(Document.Sum)}"></Span>
 			Видаткова накладна №
 			<Span Content="{Bind Document.Id}"/>
 			від
 			<Span Content="{Bind Document.Date, DataType=Date, Format='D'}"/>
 		</Text>
-		<Text Padding="10pt" Border="1pt" Margin="10pt">
-			<Span Content="{Bind spell(Document.Sum) + test()}"/>
+		<Text Padding="10pt" Border="1pt" Margin="10pt" FontSize="20">
+			<Span Content="{Bind spellMoney(Document.Sum)}"/>
 		</Text>
 		<Text>
 			<Span>
@@ -87,6 +86,15 @@
 			<TableRow>
 				<TableCell>Відпустив</TableCell>
 				<TableCell Border="0,0,1pt,0"></TableCell>
+				<TableCell />
+				<TableCell Content="Прийняв"/>
+				<TableCell Border="0,0,1pt,0"/>
+			</TableRow>
+			<TableRow>
+				<TableCell ColSpan="2"/>
+				<TableCell>
+					<Image Margin="5mm" Border="1pt" Padding="1mm"/>
+				</TableCell>
 			</TableRow>
 		</Table>
 	</Column>

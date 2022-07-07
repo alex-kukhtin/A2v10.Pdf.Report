@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Globalization;
+using A2v10.Pdf.Report.Utils;
+
 using Jint;
 using Jint.Native;
 
@@ -31,7 +33,7 @@ internal class ScriptEngine
 		foreach (var item in model)
 			_engine.SetValue(item.Key, item.Value);
 
-		_engine.SetValue("spell", Spell);
+		_engine.SetValue("spellMoney", SpellMoney);
 		_engine.SetValue("formatDate", FormatDate);
 	}
 
@@ -60,9 +62,12 @@ internal class ScriptEngine
 		return _engine.Invoke(func, data).ToObject();
 	}
 
-	static String Spell(Object value)
+	String SpellMoney(Object value, String currencyCode)
 	{
-		return "Spell for : " + value.ToString();
+		if (String.IsNullOrEmpty(currencyCode))
+			currencyCode = "980";
+		var d = Convert.ToDecimal(value);
+		return SpellString.SpellCurrency(d, _culture, currencyCode);
 	}
 
 	String FormatDate(Object value, String format)
