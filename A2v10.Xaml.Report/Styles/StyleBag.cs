@@ -12,6 +12,13 @@ public class StyleBag
 	const String THIN_BORDER = ".2pt";
 	public StyleBag()
 	{
+
+		_styles.Add("Page", new RuntimeStyle()
+		{
+			FontSize = 10F,
+			Margin = Thickness.FromString("20mm,10mm")
+		}); 
+
 		_styles.Add("Text.Title", new RuntimeStyle()
 		{
 			FontSize = 14F,

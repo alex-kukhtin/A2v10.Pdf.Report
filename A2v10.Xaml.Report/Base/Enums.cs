@@ -2,6 +2,13 @@
 
 namespace A2v10.Xaml.Report;
 
+
+public enum PageOrientation
+{
+	Portrait,
+	Landscape,
+}
+
 public enum TextAlign
 {
 	Left,

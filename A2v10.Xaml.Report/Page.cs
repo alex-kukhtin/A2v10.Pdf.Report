@@ -12,11 +12,14 @@ public class Page : XamlElement
 	public String? Code { get; init; }
 	public ColumnCollection Columns { get; init; } = new ColumnCollection();
 
+	public PageOrientation Orientation { get; init; }
+
 	public override void ApplyStyles(String selector, StyleBag styles)
 	{
-		var sel = selector + ">Page";
+		var sel = "Page";
 		_runtimeStyle = styles.GetRuntimeStyle(sel);
 		foreach (var col in Columns)
 			col.ApplyStyles(sel, styles);
+		ApplyStylesSelf();
 	}
 }

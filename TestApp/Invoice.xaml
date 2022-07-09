@@ -1,4 +1,5 @@
-﻿<Page xmlns="clr-namespace:A2v10.Xaml.Report;assembly=A2v10.Xaml.Report">
+﻿<Page xmlns="clr-namespace:A2v10.Xaml.Report;assembly=A2v10.Xaml.Report"
+	  Orientation="Landscape">
 	<Page.Code>
 		<![CDATA[
 		function test() {
@@ -13,7 +14,7 @@
 		<Bind Expression="`Видаткова накладна № ${Document.Id} від ${formatDate(Document.Date, 'D')}`"/>
 	</Page.Title>
 	<Column>
-		<Text Align="Right" If="{Bind Document.Cond}">
+		<Text Align="Right" If="{Bind Document.Id}">
 			Top of page (default text)
 		</Text>
 		<Line Thickness=".5pt"/>
@@ -84,18 +85,18 @@
 				</TableRow>
 			</Table.Footer>
 		</Table>
-		<Table Margin="1cm,0" Columns="20mm,50mm,1fr,20mm,50mm" If="{Bind Document.Cond}">
+		<Table Margin="1cm,0" Columns="20mm,50mm,1fr,20mm,50mm" If="{Bind Document.Id}">
 			<TableRow>
 				<TableCell>Відпустив</TableCell>
 				<TableCell Border="0,0,1pt,0"></TableCell>
 				<TableCell />
-				<TableCell Content="Прийняв" If="{Bind Document.Cond}"/>
+				<TableCell Content="Прийняв" If="{Bind Document.Id}"/>
 				<TableCell Border="0,0,1pt,0"/>
 			</TableRow>
-			<TableRow If="{Bind Document.Cond}">
+			<TableRow If="{Bind Document.Id}">
 				<TableCell ColSpan="2"/>
 				<TableCell>
-					<Image Margin="5mm" Border="1pt" Padding="1mm" If="{Bind Document.Cond}"/>
+					<Image Margin="5mm" Border="1pt" Padding="1mm" If="{Bind Document.Id}"/>
 				</TableCell>
 			</TableRow>
 		</Table>
