@@ -1,4 +1,3 @@
 
-9. Page Margins, PageSize, Orientation
 18. Draw images
 
