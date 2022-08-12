@@ -39,7 +39,7 @@ internal static class Program
 
 		var localizer = new MockLocalizer();
 
-		var path = "C:/Git/A2v10.Pdf.Report/TestApp/Invoice.xaml";
+		var path = "C:/A2v10_Net48/A2v10.Pdf.Report/TestApp/Invoice.xaml";
 
 		var outPath = "sample.pdf";
 
