@@ -5,6 +5,7 @@ using System.IO;
 
 using A2v10.Data;
 using A2v10.Pdf.Report;
+using QuestPDF.Drawing;
 
 namespace TestApp;
 
@@ -34,7 +35,7 @@ internal static class Program
 		var dm = dbContext.LoadModel(null, "doc.[Document.Stock.Report]", new ExpandoObject()
 		{
 			{ "UserId", 99 },
-			{ "Id", 481 }
+			{ "Id", 103 }
 		});
 
 		var localizer = new MockLocalizer();
@@ -43,6 +44,8 @@ internal static class Program
 
 		var outPath = "sample.pdf";
 
+
+		//FontManager.RegisterFontFromEmbeddedResource("Lato");
 		using (var stream = File.OpenRead(path))
 		{
 			var builder = new PdfBuilder(localizer, stream, dm.Root);

@@ -14,9 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="A2v10.Data.Interfaces">
-      <HintPath>..\..\A2v10.Data\A2v10.Data.Interfaces\bin\Debug\A2v10.Data.Interfaces.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xaml" />
   </ItemGroup>
 

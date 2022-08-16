@@ -56,6 +56,14 @@ internal class RenderContext
 
 	public String? GetValueAsString(Object value, String propertyName = "Content")
 	{
+		var x = _getValueAsString(value, propertyName);
+		if (x == null)
+			return x;
+		return x.Replace("\\n", "\n");
+	}
+
+	private String? _getValueAsString(Object value, String propertyName)
+	{ 
 		if (value == null)
 			return null;
 		if (value is String strElem)

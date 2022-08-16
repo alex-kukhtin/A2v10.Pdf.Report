@@ -46,6 +46,14 @@ public class Span : ContentElement
 }
 
 
+public class Break : ContentElement
+{
+	public Break()
+	{
+		this.Content = "\n";
+	}
+}
+
 [TypeConverter(typeof(InlineCollectionConverter))]
 public sealed class InlineCollection : List<Object>
 {

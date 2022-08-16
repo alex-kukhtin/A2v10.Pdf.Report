@@ -1,5 +1,5 @@
 ﻿<Page xmlns="clr-namespace:A2v10.Xaml.Report;assembly=A2v10.Xaml.Report"
-	  Orientation="Landscape">
+	  Orientation="Portrait">
 	<Page.Code>
 		<![CDATA[
 		function test() {
@@ -18,10 +18,10 @@
 			Top of page (default text)
 		</Text>
 		<Line Thickness=".5pt"/>
-		<Text Style="Title" Align="Center" Italic="True">
+		<Text Style="Title" Align="Center" Italic="False" FontSize="30">
 			Видаткова накладна №
 			<Span Content="{Bind Document.Id}"/>
-			від
+			\nвід
 			<Span Content="{Bind Document.Date, DataType=Date, Format='D'}"/>
 		</Text>
 		<Text Padding="10pt" Border="1pt" Margin="10pt" FontSize="20">
@@ -92,6 +92,7 @@
 				<TableCell />
 				<TableCell Content="Прийняв" If="{Bind Document.Id}"/>
 				<TableCell Border="0,0,1pt,0"/>
+				<TableCell>a\nb</TableCell>
 			</TableRow>
 			<TableRow If="{Bind Document.Id}">
 				<TableCell ColSpan="2"/>
