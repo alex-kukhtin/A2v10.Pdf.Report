@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netframework4.8</TargetFramework>
-		<Version>10.0.7880</Version>
+		<Version>10.0.7882</Version>
 		<LangVersion>10</LangVersion>
 		<Nullable>enable</Nullable>
 		<RootNamespace>A2v10.Pdf.Report</RootNamespace>
@@ -29,7 +29,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Jint" Version="3.0.0-beta-2039" />
-		<PackageReference Include="QuestPDF" Version="2022.8.0" />
+		<PackageReference Include="QuestPDF" Version="2022.8.2" />
 	</ItemGroup>
 
 	<ItemGroup>
