@@ -112,7 +112,7 @@ internal static class DecorationStyles
 		if (style == null)
 			return;
 		if (style.FontSize != null)
-			container.FontSize(style.FontSize.Value);
+			container = container.FontSize(style.FontSize.Value);
 		if (style.Bold != null && style.Bold.Value)
 			container.Bold();
 	}
