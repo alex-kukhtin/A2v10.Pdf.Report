@@ -2,6 +2,7 @@
 using System;
 using System.Dynamic;
 using System.Globalization;
+using A2v10.Infrastructure;
 using A2v10.Xaml.Report;
 
 namespace A2v10.Pdf.Report;
@@ -28,7 +29,7 @@ internal class RenderContext
 	public ScriptEngine Engine { get; }
 	public ExpandoObject DataModel { get; }
 
-	public String ValueToString(Object value, DataType dataType = DataType.String, String? format = null)
+	public String ValueToString(Object? value, DataType dataType = DataType.String, String? format = null)
 	{
 		if (value == null)
 			return String.Empty;
@@ -52,6 +53,24 @@ internal class RenderContext
 				return String.Format(_formatProvider, "{0:g}", value);
 		}
 		return _localizer.Localize(value.ToString()) ?? String.Empty;
+	}
+
+	public Byte[]? GetValueAsByteArray(Object value, String propertyName)
+	{
+		if (value == null)
+			return null;
+		if (value is not XamlElement xamlElem)
+			return null;
+		var bindRuntime = xamlElem.GetBindRuntime(propertyName);
+		if (bindRuntime == null || bindRuntime.Expression == null)
+			return null;
+		var lastDot = bindRuntime.Expression.LastIndexOf('.');
+		if (lastDot == -1)
+			return null;
+		var objVal = Engine.EvaluateValue(bindRuntime.Expression.Substring(0, lastDot));
+		if (objVal == null || objVal is not ExpandoObject eoVal)
+			return null;
+		return eoVal.Get<Byte[]>(bindRuntime.Expression.Substring(lastDot + 1));
 	}
 
 	public String? GetValueAsString(Object value, String propertyName = "Content")

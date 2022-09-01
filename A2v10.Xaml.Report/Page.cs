@@ -11,6 +11,8 @@ public class Page : XamlElement
 	public String? Title { get; init; }
 	public String? Code { get; init; }
 	public ColumnCollection Columns { get; init; } = new ColumnCollection();
+	public Column? Header { get; init; }
+	public Column? Footer { get; init; }
 
 	public PageOrientation Orientation { get; init; }
 
@@ -20,6 +22,10 @@ public class Page : XamlElement
 		_runtimeStyle = styles.GetRuntimeStyle(sel);
 		foreach (var col in Columns)
 			col.ApplyStyles(sel, styles);
+		if (Header != null)
+			Header.ApplyStyles(sel, styles);
+		if (Footer != null)
+			Footer.ApplyStyles(sel, styles);
 		ApplyStylesSelf();
 	}
 }

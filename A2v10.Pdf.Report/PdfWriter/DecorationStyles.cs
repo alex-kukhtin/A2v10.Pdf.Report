@@ -6,7 +6,7 @@ using QuestPDF.Fluent;
 using QuestPDF.Elements.Table;
 
 using A2v10.Xaml.Report;
-
+using System;
 
 namespace A2v10.Pdf.Report;
 
@@ -114,6 +114,10 @@ internal static class DecorationStyles
 		if (style.FontSize != null)
 			container = container.FontSize(style.FontSize.Value);
 		if (style.Bold != null && style.Bold.Value)
-			container.Bold();
+			container = container.Bold();
+		if (style.Italic != null && style.Italic.Value)
+			container = container.Italic();
+		if (!String.IsNullOrEmpty(style.Color))
+			container = container.FontColor(style.Color!);
 	}
 }

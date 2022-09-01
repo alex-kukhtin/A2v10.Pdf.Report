@@ -13,7 +13,34 @@
 	<Page.Title>
 		<Bind Expression="`Видаткова накладна № ${Document.Id} від ${formatDate(Document.Date, 'D')}`"/>
 	</Page.Title>
+	<Page.Header>
+		<Column>
+			<Text>Page Header
+				<Span Color="#ff0000">Span 1</Span>
+				<Span Color="#00ff00">Span 2</Span>
+			</Text>
+			<Image Source="{Bind Document.Company.Logo.Stream}" Height="15mm"/>
+			<Line Thickness="4pt"/>
+		</Column>
+	</Page.Header>
 	<Column>
+		<Text Style="Title">
+			Замовлення клієнта №
+			<Span Content="{Bind Document.Id}"/>
+			від
+			<Span Content="{Bind Document.Date, Format='D'}"/>
+		</Text>
+		<List ItemsSource="{Bind Document.Rows}" Padding="20mm" Spacing="10">
+			<ListItem Content="{Bind Item.Name}" Bullet="{Bind RowNo}"/>
+			<ListItem Content="{Bind Item.Name}" Italic="True" Color="#ff8000" Bullet="x"/>
+			<ListItem Content="I am the text" Bold="True" Color="#ff0000" Bullet="•"/>
+			<ListItem Bullet="+">
+				<Column>
+					<Text Color="#008000">I am the static list item</Text>
+					<Image Source="{Bind Document.Company.Logo.Stream}" Height="15mm"/>
+				</Column>
+			</ListItem>
+		</List>
 		<Text Align="Right" If="{Bind Document.Id}">
 			Top of page (default text)
 		</Text>
@@ -87,7 +114,7 @@
 		</Table>
 		<Table Margin="1cm,0" Columns="20mm,50mm,1fr,20mm,50mm" If="{Bind Document.Id}">
 			<TableRow>
-				<TableCell>Відпустив</TableCell>
+				<TableCell Bold="True" Color="#ff0000">Відпустив</TableCell>
 				<TableCell Border="0,0,1pt,0"></TableCell>
 				<TableCell />
 				<TableCell Content="Прийняв" If="{Bind Document.Id}"/>
@@ -102,4 +129,14 @@
 			</TableRow>
 		</Table>
 	</Column>
+	<Page.Footer>
+		<Column>
+			<Line Thickness="1pt" Color="#ff0000"/>
+			<Text Align="Center" Italic="True" Color="#0077FF" Margin="5mm">
+				<Span Content="$(PageNumber)"/> 
+				/
+				<Span Content="$(TotalPages)"/>
+			</Text>
+		</Column>
+	</Page.Footer>
 </Page>

@@ -1,5 +1,7 @@
 ﻿// Copyright © 2022 Oleksandr Kukhtin. All rights reserved.
 
+using System;
+
 using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
 
@@ -30,20 +32,27 @@ internal class TextComposer : FlowElementComposer
 			ts = ts.Bold();
 		if (rs.Italic != null && rs.Italic.Value)
 			ts = ts.Italic();
+		if (!String.IsNullOrEmpty(rs.Color))
+			ts = ts.FontColor(rs.Color!);
 		descr.DefaultTextStyle(ts);
 	}
 
 	TextSpanDescriptor? ApplyRuntimeStyle(TextSpanDescriptor? descr, ContentElement elem)
 	{
+		if (descr == null)
+			return descr;
 		var rs = elem.RuntimeStyle;
 		if (rs == null)
-			return;
+			return descr;
 		if (rs.FontSize != null)
 			descr = descr.FontSize(rs.FontSize.Value);
 		if (rs.Bold != null && rs.Bold.Value)
 			descr = descr.Bold();
 		if (rs.Italic != null && rs.Italic.Value)
 			descr = descr.Italic();
+		if (!String.IsNullOrEmpty(rs.Color))
+			descr = descr.FontColor(rs.Color!);
+		return descr;
 	}
 
 	internal override void Compose(IContainer container)
@@ -61,7 +70,21 @@ internal class TextComposer : FlowElementComposer
 				var val = _context.GetValueAsString(elem);
 				if (val != null)
 				{
-					var res = txt.Span(val);
+					TextSpanDescriptor? res = null;
+					if (val.StartsWith("$("))
+					{
+						switch (val)
+						{
+							case "$(PageNumber)":
+								res = txt.CurrentPageNumber();
+								break;
+							case "$(TotalPages)":
+								res = txt.TotalPages();
+								break;
+						}
+					}
+					else
+						res = txt.Span(val);
 					if (elem is ContentElement contElem)
 					{
 						ApplyRuntimeStyle(res, contElem);

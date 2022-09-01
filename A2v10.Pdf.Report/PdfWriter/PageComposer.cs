@@ -1,10 +1,10 @@
 ﻿// Copyright © 2022 Oleksandr Kukhtin. All rights reserved.
 
-using A2v10.Xaml.Report;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 
+using A2v10.Xaml.Report;
 
 namespace A2v10.Pdf.Report;
 
@@ -54,15 +54,28 @@ internal class PageComposer
 		});
 
 		// header
-		// TODO:
+		if (_page.Header != null)
+			page.Header().Element(ComposeHeader);
 
 		// content
 		page.Content().Element(ComposeContent);
 
+		if (_page.Footer != null)
+			page.Footer().Element(ComposeFooter);
 		// footer
 		// TODO
 	}
 
+	void ComposeHeader(IContainer container)
+	{
+		if (_page.Header == null)
+			return;
+		container.Column(column =>
+		{
+			var cc = new ColumnComposer(_page.Header, _context);
+			cc.Compose(column);
+		});
+	}
 	void ComposeContent(IContainer container)
 	{
 		foreach (var c in _page.Columns)
@@ -73,5 +86,15 @@ internal class PageComposer
 				cc.Compose(column);
 			});
 		}
+	}
+	void ComposeFooter(IContainer container)
+	{
+		if (_page.Footer == null)
+			return;
+		container.Column(column =>
+		{
+			var cc = new ColumnComposer(_page.Footer, _context);
+			cc.Compose(column);
+		});
 	}
 }
