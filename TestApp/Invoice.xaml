@@ -65,7 +65,7 @@
 			<TableRow>
 				<TableCell>
 				</TableCell>
-				<TableCell>@[Localize]</TableCell>
+				<TableCell Color="#ffffff" Background="#008800" Padding="5mm">@[Localize]</TableCell>
 				<TableCell Content="{Bind Document.Date, DataType=Date}"/>
 				<TableCell>
 					<Table ItemsSource="{Bind Document.Rows}">
