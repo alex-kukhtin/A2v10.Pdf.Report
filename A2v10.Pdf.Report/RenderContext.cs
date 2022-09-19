@@ -2,6 +2,7 @@
 using System;
 using System.Dynamic;
 using System.Globalization;
+using System.IO;
 using A2v10.Infrastructure;
 using A2v10.Xaml.Report;
 
@@ -11,9 +12,13 @@ internal class RenderContext
 {
 	private readonly IReportLocalizer _localizer;
 	private readonly CultureInfo _formatProvider;
-	public RenderContext(IReportLocalizer localizer, ExpandoObject model, String? code)
+	private readonly String _rootPath;
+	private readonly String _templatePath;
+	public RenderContext(String rootPath, String templatePath, IReportLocalizer localizer, ExpandoObject model, String? code)
 	{
 		_localizer = localizer;
+		_rootPath = rootPath;
+		_templatePath = templatePath;
 		DataModel = model;
 		var  clone = _localizer.CurrentCulture.Clone();
 		if (clone is CultureInfo cloneCI && cloneCI != null)
@@ -53,6 +58,20 @@ internal class RenderContext
 				return String.Format(_formatProvider, "{0:g}", value);
 		}
 		return _localizer.Localize(value.ToString()) ?? String.Empty;
+	}
+
+	public Byte[]? GetFileAsByteArray(String? fileName)
+	{
+		if (String.IsNullOrEmpty(fileName))
+			return null;
+		if (Path.IsPathRooted(fileName))
+			throw new InvalidDataException("Invalid path. The path must be relative");
+		var templDir = Path.GetDirectoryName(_templatePath);
+		var fullPath = Path.GetFullPath(Path.Combine(templDir, fileName));
+		var pathDir = Path.GetDirectoryName(fullPath);
+		if (!pathDir.StartsWith(_rootPath, StringComparison.InvariantCultureIgnoreCase))
+			throw new InvalidDataException("Invalid path. You can place files in the application folder only.");
+		return File.ReadAllBytes(fullPath);
 	}
 
 	public Byte[]? GetValueAsByteArray(Object value, String propertyName)

@@ -1,5 +1,7 @@
 ﻿// Copyright © 2022 Oleksandr Kukhtin. All rights reserved.
 
+using System;
+
 using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
 
@@ -27,7 +29,11 @@ internal class ImageComposer : FlowElementComposer
 		container = container.ApplyDecoration(_image.RuntimeStyle);
 		if (_context.IsVisible(_image))
 		{
-			var stream = _context.GetValueAsByteArray(_image, "Source");
+			Byte[]? stream = null;
+			if (!String.IsNullOrEmpty(_image.FileName))
+				stream = _context.GetFileAsByteArray(_image.FileName);
+			else
+				stream = _context.GetValueAsByteArray(_image, "Source");
 			if (stream == null)
 				return;
 			if (_image.Width != null)
@@ -35,8 +41,6 @@ internal class ImageComposer : FlowElementComposer
 			if (_image.Height != null)
 				container = container.Width(_image.Height.Value, _image.Height.Unit.ToUnit());
 			container.Image(stream, ImageScaling.FitArea);
-
-			//container.Image(Placeholders.Image(100, 100), ImageScaling.FitWidth);
 		}
 	}
 }

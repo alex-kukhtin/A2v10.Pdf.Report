@@ -12,24 +12,28 @@ namespace A2v10.Pdf.Report;
 
 public class PdfBuilder
 {
-	private readonly String? _templatePath;
 	private readonly Stream? _templateStream;
 	private readonly ExpandoObject _model;
 	private readonly IReportLocalizer _localizer;
+	private readonly String _rootPath;
+	private readonly String _templatePath;
 
-	public PdfBuilder(IReportLocalizer localizer, String templatePath, ExpandoObject model)
+	public PdfBuilder(String rootPath, IReportLocalizer localizer, String templatePath, ExpandoObject model)
 	{
 		_localizer = localizer;
-		_templatePath = templatePath;
 		_model = model;
 		_templateStream = null;
+		_rootPath = rootPath;
+		_templatePath = templatePath;
 	}
 
-	public PdfBuilder(IReportLocalizer localizer, Stream stream, ExpandoObject model)
+	public PdfBuilder(String rootPath, IReportLocalizer localizer, String templatePath, Stream stream, ExpandoObject model)
 	{
 		_localizer = localizer;
 		_templateStream = stream;
 		_model = model;
+		_rootPath = rootPath;
+		_templatePath = templatePath;
 	}
 
 	public Stream Build()
@@ -55,7 +59,7 @@ public class PdfBuilder
 	public void Build(Stream stream)
 	{
 		var page = Read();
-		var context = new RenderContext(_localizer, _model, page.Code);
+		var context = new RenderContext(_rootPath, _templatePath, _localizer, _model, page.Code);
 		var doc = new ReportDocument(page, context);
 		doc.GeneratePdf(stream);
 	}
