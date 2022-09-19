@@ -25,7 +25,7 @@
 		</contentFiles>
 		<dependencies>
 			<group targetFramework=".NETFramework4.8">
-				<dependency id="QuestPDF" version="2022.8.2" />
+				<dependency id="QuestPDF" version="2022.9.0" />
 			</group>
 		</dependencies>
 	</metadata>
