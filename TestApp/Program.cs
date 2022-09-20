@@ -48,7 +48,7 @@ internal static class Program
 		//FontManager.RegisterFontFromEmbeddedResource("Lato");
 		using (var stream = File.OpenRead(path))
 		{
-			var builder = new PdfBuilder(localizer, stream, dm.Root);
+			var builder = new PdfBuilder(path, localizer, path, stream, dm.Root);
 
 			DeleteFile(outPath);
 

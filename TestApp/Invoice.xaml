@@ -24,6 +24,22 @@
 		</Column>
 	</Page.Header>
 	<Column>
+		<Table Columns="5cm,5cm,1fr">
+			<TableRow>
+				<TableCell Background="#ffff00">
+					<Column>
+						<Image Source="{Bind Document.Company.Logo.Stream}" Height="15" If="True"/>
+						<Image Source="{Bind Document.Company.Logo.Stream}" Height="20"/>
+					</Column>
+				</TableCell>
+				<TableCell Background="#00ffff">
+					<Inlined>
+						<Image Source="{Bind Document.Company.Logo.Stream}" Height="20"/>
+						<Image Source="{Bind Document.Company.Logo.Stream}" Height="15" If="True"/>
+					</Inlined>
+				</TableCell>
+			</TableRow>
+		</Table>
 		<Text Style="Title">
 			Замовлення клієнта №
 			<Span Content="{Bind Document.Id}"/>
@@ -63,7 +79,8 @@
 		</Text>
 		<Table Columns="1*,50pt,30mm,120mm" Margin="5mm,2mm">
 			<TableRow>
-				<TableCell>
+				<TableCell Border="1" Background="#ffff00">
+					<Image Source="{Bind Document.Company.Logo.Stream}" Height="15"/>
 				</TableCell>
 				<TableCell Color="#ffffff" Background="#008800" Padding="5mm">@[Localize]</TableCell>
 				<TableCell Content="{Bind Document.Date, DataType=Date}"/>
@@ -87,7 +104,13 @@
 			   Columns="1cm,1fr,2cm,20mm,28mm,28mm">
 			<Table.Header>
 				<TableRow>
-					<TableCell RowSpan="2">Art</TableCell>
+					<TableCell RowSpan="2">
+						<Column>
+							<Text>Art</Text>
+							<Image Source="{Bind Document.Company.Logo.Stream}" Height="5"/>
+							<Text>Art</Text>
+						</Column>
+					</TableCell>
 					<TableCell RowSpan="2" Align="Right">Entity</TableCell>
 					<TableCell ColSpan="2">Qty</TableCell>
 					<TableCell RowSpan="2" Padding="8mm,0">Price</TableCell>
