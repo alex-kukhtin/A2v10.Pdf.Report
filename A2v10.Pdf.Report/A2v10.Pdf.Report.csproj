@@ -22,9 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="A2v10.Pdf.Report.nuspec">
-	    <SubType>Designer</SubType>
-	  </Content>
+	  <Content Include="A2v10.Pdf.Report.nuspec" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -37,4 +35,7 @@
 		<ProjectReference Include="..\A2v10.Xaml.Report\A2v10.Xaml.Report.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Resources\" />
+	</ItemGroup>
 </Project>

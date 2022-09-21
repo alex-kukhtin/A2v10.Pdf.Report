@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Dynamic;
 using System.IO;
-
+using System.Reflection;
 using A2v10.Data;
 using A2v10.Pdf.Report;
 using QuestPDF.Drawing;
@@ -42,9 +42,20 @@ internal static class Program
 
 		var path = "C:/A2v10_Net48/A2v10.Pdf.Report/TestApp/Invoice.xaml";
 
-		var outPath = "sample.pdf";
+		var outPath = "c:\\temp\\sample.pdf";
 
 
+		/*
+		 * in report.pdf dll
+		//var resName = "A2v10.Pdf.Report.Resources.OpenSansEmbed.ttf";
+		//using Stream stx = Assembly.GetExecutingAssembly().GetManifestResourceStream(resName);
+		//FontManager.RegisterFontWithCustomName("Roboto Flex", stx);
+		//FontManager.RegisterFont(stx);
+		*/
+
+		//using Stream stx = Assembly.GetExecutingAssembly().GetManifestResourceStream("OpenSansEmbed");
+
+		//FontManager.RegisterFontFromEmbeddedResource("OpenSansEmbed");
 		//FontManager.RegisterFontFromEmbeddedResource("Lato");
 		using (var stream = File.OpenRead(path))
 		{

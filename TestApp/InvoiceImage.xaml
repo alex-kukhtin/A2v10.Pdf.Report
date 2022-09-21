@@ -19,6 +19,7 @@
 				<Span Color="#ff0000">Span 1</Span>
 				<Span Color="#00ff00">Span 2</Span>
 			</Text>
+			<Image Source="{Bind Document.Company.Logo.Stream}" Height="15mm" If="False"/>
 			<Line Thickness="4pt"/>
 		</Column>
 	</Page.Header>
@@ -27,10 +28,14 @@
 			<TableRow>
 				<TableCell Background="#ffff00">
 					<Column>
+						<Image Source="{Bind Document.Company.Logo.Stream}" Height="15" If="False"/>
+						<Image Source="{Bind Document.Company.Logo.Stream}" Height="20" If="False"/>
 					</Column>
 				</TableCell>
 				<TableCell Background="#00ffff">
 					<Inlined>
+						<Image Source="{Bind Document.Company.Logo.Stream}" Height="20" If="False"/>
+						<Image Source="{Bind Document.Company.Logo.Stream}" Height="15" If="False"/>
 					</Inlined>
 				</TableCell>
 			</TableRow>
@@ -43,11 +48,12 @@
 		</Text>
 		<List ItemsSource="{Bind Document.Rows}" Padding="20mm" Spacing="10">
 			<ListItem Content="{Bind Item.Name}" Bullet="{Bind RowNo}"/>
-			<ListItem Content="{Bind Item.Name}" Italic="False" Color="#ff8000" Bullet="x"/>
-			<ListItem Content="I am the text" Bold="False" Color="#ff0000" Bullet="•"/>
+			<ListItem Content="{Bind Item.Name}" Italic="True" Color="#ff8000" Bullet="x"/>
+			<ListItem Content="I am the text" Bold="True" Color="#ff0000" Bullet="•"/>
 			<ListItem Bullet="+">
 				<Column>
 					<Text Color="#008000">I am the static list item</Text>
+					<Image Source="{Bind Document.Company.Logo.Stream}" Height="15mm" If="False"/>
 				</Column>
 			</ListItem>
 		</List>
@@ -74,6 +80,7 @@
 		<Table Columns="1*,50pt,30mm,120mm" Margin="5mm,2mm">
 			<TableRow>
 				<TableCell Border="1" Background="#ffff00">
+					<Image Source="{Bind Document.Company.Logo.Stream}" Height="15" If="False"/>
 				</TableCell>
 				<TableCell Color="#ffffff" Background="#008800" Padding="5mm">@[Localize]</TableCell>
 				<TableCell Content="{Bind Document.Date, DataType=Date}"/>
@@ -100,6 +107,7 @@
 					<TableCell RowSpan="2">
 						<Column>
 							<Text>Art</Text>
+							<Image Source="{Bind Document.Company.Logo.Stream}" Height="5" If="False"/>
 							<Text>Art</Text>
 						</Column>
 					</TableCell>
@@ -123,13 +131,13 @@
 			</TableRow>
 			<Table.Footer>
 				<TableRow>
-					<TableCell Content="{Bind Document.Sum, DataType=Currency}" ColSpan="4" Align="Right" Bold="False"/>
+					<TableCell Content="{Bind Document.Sum, DataType=Currency}" ColSpan="4" Align="Right"/>
 				</TableRow>
 			</Table.Footer>
 		</Table>
 		<Table Margin="1cm,0" Columns="20mm,50mm,1fr,20mm,50mm" If="{Bind Document.Id}">
 			<TableRow>
-				<TableCell Bold="False" Color="#ff0000">Відпустив</TableCell>
+				<TableCell Bold="True" Color="#ff0000">Відпустив</TableCell>
 				<TableCell Border="0,0,1pt,0"></TableCell>
 				<TableCell />
 				<TableCell Content="Прийняв" If="{Bind Document.Id}"/>
@@ -139,6 +147,7 @@
 			<TableRow If="{Bind Document.Id}">
 				<TableCell ColSpan="2"/>
 				<TableCell>
+					<Image Margin="5mm" Border="1pt" Padding="1mm" />
 				</TableCell>
 			</TableRow>
 		</Table>

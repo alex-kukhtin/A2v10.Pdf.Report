@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="InvoiceImage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
     <None Update="Invoice.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
