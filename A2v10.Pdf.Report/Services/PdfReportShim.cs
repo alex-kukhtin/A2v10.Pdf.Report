@@ -25,7 +25,7 @@ public class PdfReportShim : IPdfReportShim
 	{
 		if (_localizer == null)
 			throw new InvalidOperationException("PdfReportShim. _localizer is null");
-		var rep = new PdfBuilder(_rootPath, _localizer, path, data);
+		var rep = new PdfBuilder(_rootPath, _localizer, path, stream, data);
 		return rep.Build();
 	}
 
