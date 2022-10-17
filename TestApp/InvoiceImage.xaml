@@ -24,6 +24,7 @@
 		</Column>
 	</Page.Header>
 	<Column>
+		<Image FileName="Logo.png" Border="2px" Width="30mm" Height="30mm"/>
 		<Table Columns="5cm,5cm,1fr">
 			<TableRow>
 				<TableCell Background="#ffff00">
@@ -41,7 +42,7 @@
 			</TableRow>
 		</Table>
 		<Text Style="Title">
-			Замовлення клієнта №
+			Замовлення клієнта_234 №
 			<Span Content="{Bind Document.Id}"/>
 			від
 			<Span Content="{Bind Document.Date, Format='D'}"/>
@@ -53,7 +54,7 @@
 			<ListItem Bullet="+">
 				<Column>
 					<Text Color="#008000">I am the static list item</Text>
-					<Image Source="{Bind Document.Company.Logo.Stream}" Height="15mm" If="False"/>
+					<Image Source="{Bind Document.Company.Logo.Stream}" Height="15mm" If="True"/>
 				</Column>
 			</ListItem>
 		</List>

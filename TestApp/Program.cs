@@ -35,7 +35,7 @@ internal static class Program
 		var dm = dbContext.LoadModel(null, "doc.[Document.Stock.Report]", new ExpandoObject()
 		{
 			{ "UserId", 99 },
-			{ "Id", 103 }
+			{ "Id", 328 }
 		});
 
 		var localizer = new MockLocalizer();
@@ -59,7 +59,7 @@ internal static class Program
 		//FontManager.RegisterFontFromEmbeddedResource("Lato");
 		using (var stream = File.OpenRead(path))
 		{
-			var builder = new PdfBuilder(path, localizer, path, stream, dm.Root);
+			var builder = new PdfBuilder(Path.GetDirectoryName(path), localizer, path, stream, dm.Root);
 
 			DeleteFile(outPath);
 

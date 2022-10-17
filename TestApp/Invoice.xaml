@@ -8,6 +8,8 @@
 		
 		const docTitle = (doc) => `Видаткова накладна № ${doc.Id} від ${formatDate(doc.Date, 'D')}`;
 		
+		const fileName = () => 'logo' + '.png';		
+		
 		]]>
 	</Page.Code>
 	<Page.Title>
@@ -23,6 +25,7 @@
 		</Column>
 	</Page.Header>
 	<Column>
+		<Image FileName="{Bind fileName()}" Width="2cm" Height="2cm" Border="1pt"/>
 		<Table Columns="5cm,5cm,1fr">
 			<TableRow>
 				<TableCell Background="#ffff00">
