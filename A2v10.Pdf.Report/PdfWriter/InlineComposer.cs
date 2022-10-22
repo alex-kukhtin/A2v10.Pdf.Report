@@ -4,6 +4,7 @@ using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
 
 using A2v10.Xaml.Report;
+using System;
 
 namespace A2v10.Pdf.Report;
 
@@ -18,7 +19,7 @@ internal class InlinedComposer : FlowElementComposer
 		_context = context;
 	}
 
-	internal override void Compose(IContainer container)
+	internal override void Compose(IContainer container, Object? value = null)
 	{
 		if (!_context.IsVisible(_inlined))
 			return;

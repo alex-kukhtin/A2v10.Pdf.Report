@@ -57,7 +57,9 @@ internal class RenderContext
 			case DataType.DateTime:
 				return String.Format(_formatProvider, "{0:g}", value);
 		}
-		return _localizer.Localize(value.ToString()) ?? String.Empty;
+		var result = _localizer.Localize(value.ToString()) ?? String.Empty;
+		result = result.Replace("\\n", "\n");
+		return result;
 	}
 
 	public Byte[]? GetFileAsByteArray(String? fileName)

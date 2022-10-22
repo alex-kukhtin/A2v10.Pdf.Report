@@ -24,7 +24,7 @@
 		</Column>
 	</Page.Header>
 	<Column>
-		<Image FileName="Logo.png" Border="2px" Width="30mm" Height="30mm"/>
+		<Image FileName="Logo.png" Border="2pt" Width="30mm" Height="30mm"/>
 		<Table Columns="5cm,5cm,1fr">
 			<TableRow>
 				<TableCell Background="#ffff00">

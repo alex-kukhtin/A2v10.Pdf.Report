@@ -33,14 +33,16 @@ internal static class Program
 		var dbContext = new SqlDbContext(prof, config, loc);
 
 		var dm = dbContext.LoadModel(null, "doc.[Document.Stock.Report]", new ExpandoObject()
+		//var dm = dbContext.LoadModel(null, "frm.[PrintForm.Report]", new ExpandoObject()
 		{
 			{ "UserId", 99 },
+			//{ "Id", 104 }
 			{ "Id", 328 }
 		});
 
 		var localizer = new MockLocalizer();
 
-		var path = "C:/A2v10_Net48/A2v10.Pdf.Report/TestApp/Invoice.xaml";
+		var path = "C:/A2v10_Net48/A2v10.Pdf.Report/TestApp/InvoiceImage.xaml";
 
 		var outPath = "c:\\temp\\sample.pdf";
 

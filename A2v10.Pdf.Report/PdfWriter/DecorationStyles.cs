@@ -87,6 +87,14 @@ internal static class DecorationStyles
 		}
 		return container;
 	}
+
+	public static IContainer ApplyLayoutOptions(this IContainer container, XamlElement elem)
+	{
+		if (elem.ShowEntire)
+			return container.ShowEntire();
+		return container;
+	}
+
 	public static IContainer ApplyDecoration(this IContainer container, RuntimeStyle? style)
 	{
 		if (style == null)

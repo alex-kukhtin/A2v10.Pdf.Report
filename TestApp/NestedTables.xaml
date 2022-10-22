@@ -1,0 +1,39 @@
+﻿<Page xmlns="clr-namespace:A2v10.Xaml.Report;assembly=A2v10.Xaml.Report"
+	  Orientation="Portrait">
+	<Page.Code>
+		<![CDATA[
+		function toJson(val) {
+			return JSON.stringify(val, null, 2);
+		}
+		]]>
+	</Page.Code>
+	<Column>
+		<Table ItemsSource="{Bind Form.Lists}"
+			   Columns="1cm, 5cm, 1*, 1*" Style="Simple">
+			<TableRow>
+				<TableCell Content="{Bind Code}"/>
+				<TableCell Content="{Bind Name}"/>
+				<TableCell Padding="0">
+					<Table Columns="1*,1cm" ItemsSource="{Bind Items}" Style="Simple"
+						   ShowEntire="True">
+						<TableRow>
+							<TableCell Content="{Bind Name}"/>
+							<TableCell Content="{Bind StringValue}"/>
+						</TableRow>
+					</Table>
+				</TableCell>
+				<TableCell>
+					<List ItemsSource="{Bind Items}">
+						<ListItem Content="{Bind Name}" Bullet="*"/>
+					</List>
+				</TableCell>
+			</TableRow>
+		</Table>
+		<Table>
+			<TableRow>
+				<TableCell Content="{Bind toJson(Form.Lists)}">
+				</TableCell>
+			</TableRow>
+		</Table>
+	</Column>
+</Page>

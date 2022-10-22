@@ -24,7 +24,7 @@ internal class ImageComposer : FlowElementComposer
 	{
 	}
 
-	internal override void Compose(IContainer container)
+	internal override void Compose(IContainer container, Object? value = null)
 	{
 		if (!_context.IsVisible(_image))
 			return;

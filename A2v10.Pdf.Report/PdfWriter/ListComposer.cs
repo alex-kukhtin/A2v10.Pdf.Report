@@ -1,14 +1,13 @@
 ﻿// Copyright © 2022 Oleksandr Kukhtin. All rights reserved.
 
-using System.Linq;
 using System.Collections.Generic;
 using System.Dynamic;
+using System;
 
 using Jint.Native;
 
 using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
-using QuestPDF.Helpers;
 
 using A2v10.Xaml.Report;
 
@@ -32,17 +31,26 @@ internal class ListComposer : FlowElementComposer
 		_context = context;
 	}
 
-	internal override void Compose(IContainer container)
+	internal override void Compose(IContainer container, Object? value = null)
 	{
 		if (!_context.IsVisible(_list))
 			return;
-		container.ApplyDecoration(_list.RuntimeStyle).Column(column =>
+		container
+			.ApplyLayoutOptions(_list)
+			.ApplyDecoration(_list.RuntimeStyle).Column(column =>
 		{
-			var isbind = _list.GetBindRuntime("ItemsSource");
-			if (isbind != null && isbind.Expression != null)
+			CreateAccessFunc();
+			IList<ExpandoObject>? coll = null;
+			if (value != null && value is IList<ExpandoObject> listColl)
+				coll = listColl;
+			else
 			{
-				CreateAccessFunc();
-				var coll = _context.Engine.EvaluateCollection(isbind.Expression);
+				var isbind = _list.GetBindRuntime("ItemsSource");
+				if (isbind != null && isbind.Expression != null)
+					coll = _context.Engine.EvaluateCollection(isbind.Expression);
+			}
+			
+			if (coll != null) { 
 				foreach (var elem in coll)
 				{
 					foreach (var itm in _list.Items)
@@ -51,6 +59,7 @@ internal class ListComposer : FlowElementComposer
 					}
 				}
 			}
+			/*
 			foreach (var i in Enumerable.Range(1, 8))
 			{
 				column.Item().Row(row =>
@@ -61,6 +70,7 @@ internal class ListComposer : FlowElementComposer
 					row.RelativeItem().Text(Placeholders.Sentence());
 				});
 			}
+			*/
 		});
 	}
 
@@ -76,7 +86,7 @@ internal class ListComposer : FlowElementComposer
 			var bull = item.GetBindRuntime("Bullet");
 			if (bull != null && bull.Expression != null)
 				bulletFunc = _context.Engine.CreateAccessFunction(bull.Expression);
-			if(contFunc != null || bulletFunc != null)
+			if (contFunc != null || bulletFunc != null)
 				_accessFuncs.Add(item, new AccessFuncItem() { Content = contFunc, Bullet = bulletFunc});
 	}
 }

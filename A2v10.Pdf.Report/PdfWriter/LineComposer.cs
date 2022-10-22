@@ -4,6 +4,7 @@ using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
 
 using A2v10.Xaml.Report;
+using System;
 
 namespace A2v10.Pdf.Report;
 
@@ -18,15 +19,15 @@ internal class LineComposer : FlowElementComposer
 		_context = context;
 	}
 
-	void ApplyRuntimeStyle(TextDescriptor descr)
+	void ApplyRuntimeStyle(TextDescriptor _)
 	{
 	}
 
-	void ApplyRuntimeStyle(TextSpanDescriptor descr, ContentElement elem)
+	void ApplyRuntimeStyle(TextSpanDescriptor descr, ContentElement _)
 	{
 	}
 
-	internal override void Compose(IContainer container)
+	internal override void Compose(IContainer container, Object? value = null)
 	{
 		container.ApplyDecoration(_line.RuntimeStyle).LineHorizontal(_line.Thickness.Value, _line.Thickness.Unit.ToUnit());
 	}
