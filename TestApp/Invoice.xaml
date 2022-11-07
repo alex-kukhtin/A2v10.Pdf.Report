@@ -10,6 +10,8 @@
 		
 		const fileName = () => 'logo' + '.png';		
 		
+		const insideFunc = (arg) => arg?.toString();
+		
 		]]>
 	</Page.Code>
 	<Page.Title>
@@ -89,7 +91,7 @@
 						</Table.Columns>
 						<TableRow>
 							<TableCell Content="in cell 1" />
-							<TableCell Content="in cell 2" />
+							<TableCell Content="{Bind insideFunc(Sum)}" />
 							<TableCell Content="{Bind Sum}" />
 						</TableRow>
 					</Table>

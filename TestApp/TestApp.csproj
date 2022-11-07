@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="InvoiceSimple.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
     <None Update="NestedTables.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>

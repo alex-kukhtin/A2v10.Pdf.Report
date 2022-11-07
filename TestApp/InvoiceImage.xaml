@@ -7,6 +7,10 @@
 		}
 		
 		const docTitle = (doc) => `Видаткова накладна № ${doc.Id} від ${formatDate(doc.Date, 'D')}`;
+
+		function insideFunc(arg) {
+			return arg?.toString();
+		}
 		
 		]]>
 	</Page.Code>
@@ -93,7 +97,7 @@
 							<TableColumn />
 						</Table.Columns>
 						<TableRow>
-							<TableCell Content="in cell 1" />
+							<TableCell Content="{Bind insideFunc(_elem_.Sum)}" />
 							<TableCell Content="in cell 2" />
 							<TableCell Content="{Bind Sum}" />
 						</TableRow>
