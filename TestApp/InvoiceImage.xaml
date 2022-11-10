@@ -19,15 +19,21 @@
 	</Page.Title>
 	<Page.Header>
 		<Column>
-			<Text>Page Header
-				<Span Color="#ff0000">Span 1</Span>
-				<Span Color="#00ff00">Span 2</Span>
+			<Text Margin="1cm">Page Header
+				<Span Color="#ff0000" Underline="True">Span 1</Span>
+				<Span Color="#00ff00" Background="#ffff80">Span 2</Span>
 			</Text>
 			<Image Source="{Bind Document.Company.Logo.Stream}" Height="15mm" If="False"/>
 			<Line Thickness="4pt"/>
 		</Column>
 	</Page.Header>
 	<Column>
+		<Text Style="Title">
+			Замовлення клієнта з номером 234 №
+			<Span Content="{Bind Document.Id}" Underline="True"/>
+			від
+			<Span Content="{Bind Document.Date, Format='D'}" Underline="True"/>
+		</Text>
 		<Image FileName="Logo.png" Border="2pt" Width="30mm" Height="30mm"/>
 		<Table Columns="5cm,5cm,1fr">
 			<TableRow>
@@ -45,15 +51,9 @@
 				</TableCell>
 			</TableRow>
 		</Table>
-		<Text Style="Title">
-			Замовлення клієнта_234 №
-			<Span Content="{Bind Document.Id}"/>
-			від
-			<Span Content="{Bind Document.Date, Format='D'}"/>
-		</Text>
 		<List ItemsSource="{Bind Document.Rows}" Padding="20mm" Spacing="10">
 			<ListItem Content="{Bind Item.Name}" Bullet="{Bind RowNo}"/>
-			<ListItem Content="{Bind Item.Name}" Italic="True" Color="#ff8000" Bullet="x"/>
+			<ListItem Content="{Bind Item.Name}" Italic="True" Color="#ff8000" Bullet="x" Underline="True"/>
 			<ListItem Content="I am the text" Bold="True" Color="#ff0000" Bullet="•"/>
 			<ListItem Bullet="+">
 				<Column>
