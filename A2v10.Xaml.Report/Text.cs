@@ -45,6 +45,10 @@ public class Span : ContentElement
 	}
 }
 
+public class Space : ContentElement
+{
+	public Length? Width { get; init; }
+}
 
 public class Break : ContentElement
 {

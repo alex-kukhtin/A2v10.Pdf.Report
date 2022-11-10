@@ -14,6 +14,8 @@ public class Page : XamlElement
 	public Column? Header { get; init; }
 	public Column? Footer { get; init; }
 
+	public String? FontFamily { get; init; }
+
 	public PageOrientation Orientation { get; init; }
 
 	public override void ApplyStyles(String selector, StyleBag styles)

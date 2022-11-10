@@ -1,5 +1,5 @@
 ﻿<Page xmlns="clr-namespace:A2v10.Xaml.Report;assembly=A2v10.Xaml.Report"
-	  Orientation="Portrait">
+	  Orientation="Portrait" FontFamily="Arial" FontSize="12">
 	<Page.Code>
 		<![CDATA[
 		function test() {

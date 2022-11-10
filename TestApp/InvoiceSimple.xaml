@@ -1,36 +1,4 @@
 ﻿<Page xmlns="clr-namespace:A2v10.Xaml.Report;assembly=A2v10.Xaml.Report"
-	  Orientation="Portrait">
-	<Page.Code>
-		<![CDATA[
-		function toJson(elem, x) {
-			return (x ? x : '') + JSON.stringify(elem, null, 2);
-		}
-		function calcSum(price, qty) {
-			return price * qty * 2;
-		}
-		]]>
-	</Page.Code>
-	<Column>
-		<Table ItemsSource="{Bind Document.Rows}" Style="Details"
-			   Columns="1*,2cm,3cm,3cm">
-			<TableRow>
-				<TableCell Content="{Bind Item.Name}"/>
-				<TableCell Content="{Bind Qty}"/>
-				<TableCell Content="{Bind Price}" Align="Right"/>
-				<TableCell Content="{Bind Expression='calcSum(this.Price, this.Qty)'}" Align="Right"/>
-			</TableRow>
-			<TableRow>
-				<TableCell ColSpan="3" Content="{Bind spellMoney(Root.Document.Sum)}" />
-				<TableCell Content="{Bind Root.Document.Sum}" />
-			</TableRow>
-		</Table>
-		<Table Columns="1*">
-			<TableRow>
-				<TableCell Content="{Bind toJson(Document)}" Border="1pt"></TableCell>
-			</TableRow>
-		</Table>
-		<Text>
-			<Span Content="{Bind Expression='toJson(Document, `2`)'}" Border="1pt"></Span>
-		</Text>
-	</Column>
+		Title="Invoice Simple" FontFamily="Arial" FontSize="12" Margin="0.75cm,1.5cm,.75cm,1cm">
+	
 </Page>
