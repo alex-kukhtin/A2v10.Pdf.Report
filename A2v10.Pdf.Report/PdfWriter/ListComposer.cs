@@ -17,6 +17,8 @@ internal record AccessFuncItem
 {
 	internal JsValue? Content;
 	internal JsValue? Bullet;
+	internal String? ContentExpression;
+	internal String? BulletExpression;
 }
 
 internal class ListComposer : FlowElementComposer
@@ -94,7 +96,8 @@ internal class ListComposer : FlowElementComposer
 			if (bull != null && bull.Expression != null)
 				bulletFunc = _context.Engine.CreateAccessFunction(bull.Expression);
 			if (contFunc != null || bulletFunc != null)
-				_accessFuncs.Add(item, new AccessFuncItem() { Content = contFunc, Bullet = bulletFunc});
+				_accessFuncs.Add(item, new AccessFuncItem() { Content = contFunc, Bullet = bulletFunc, 
+					ContentExpression = cont?.Expression, BulletExpression = bull?.Expression});
 	}
 }
 
@@ -104,7 +107,7 @@ internal class ListComposer : FlowElementComposer
 		{
 			if (accessFunc.Bullet != null)
 			{
-				var bullet = _context.Engine.Invoke(accessFunc.Bullet, elem);
+				var bullet = _context.Engine.Invoke(accessFunc.Bullet, elem, accessFunc.BulletExpression);
 				row.AutoItem().Text(_context.ValueToString(bullet));
 				return;
 			}
@@ -122,7 +125,7 @@ internal class ListComposer : FlowElementComposer
 		{
 			if (accessFunc.Content != null)
 			{
-				var value = _context.Engine.Invoke(accessFunc.Content, elem);
+				var value = _context.Engine.Invoke(accessFunc.Content, elem, accessFunc.ContentExpression);
 				if (value != null)
 					row.RelativeItem().Text(_context.ValueToString(value))
 						.ApplyText(item.RuntimeStyle);
