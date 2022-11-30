@@ -28,15 +28,18 @@
 	</Page.Header>
 	<Column>
 		<Image FileName="{Bind fileName()}" Width="2cm" Height="2cm" Border="1pt"/>
-		<Table Columns="5cm,5cm,1fr">
+		<Checkbox Value="True"/>
+		<Table Columns="5cm,5cm,5cm,1fr">
 			<TableRow>
 				<TableCell Background="#ffff00">
 					<Column>
 					</Column>
 				</TableCell>
 				<TableCell Background="#00ffff">
-					<Inlined>
-					</Inlined>
+					Text inside cell
+				</TableCell>
+				<TableCell Align="Center" VAlign="Middle">
+					<Checkbox Value="True"/>
 				</TableCell>
 			</TableRow>
 		</Table>
@@ -109,13 +112,15 @@ Second line</Text>
 							<Text>Art</Text>
 						</Column>
 					</TableCell>
-					<TableCell RowSpan="2" Align="Right">Entity</TableCell>
+					<TableCell Align="Right">Entity</TableCell>
 					<TableCell ColSpan="2">Qty</TableCell>
 					<TableCell RowSpan="2" Padding="8mm,0">Price</TableCell>
 					<TableCell RowSpan="2" Align="Center">Sum</TableCell>
 				</TableRow>
 				<TableRow>
 					<TableCell />
+					<TableCell>
+					</TableCell>
 					<TableCell>Unit</TableCell>
 				</TableRow>
 			</Table.Header>
