@@ -39,7 +39,10 @@
 					Text inside cell
 				</TableCell>
 				<TableCell Align="Center" VAlign="Middle">
-					<Checkbox Value="True"/>
+					<Column>
+						<Checkbox Value="True"/>
+						<Checkbox Value="False"/>
+					</Column>
 				</TableCell>
 			</TableRow>
 		</Table>
@@ -90,11 +93,15 @@
 							<TableColumn />
 							<TableColumn />
 							<TableColumn />
+							<TableColumn />
 						</Table.Columns>
 						<TableRow>
 							<TableCell Content="in cell 1" />
 							<TableCell Content="{Bind Qty}" />
 							<TableCell Content="{Bind Sum}" />
+							<TableCell>
+								<Checkbox Value="{Bind Expression='Sum > 150'}" />
+							</TableCell>
 						</TableRow>
 					</Table>
 				</TableCell>

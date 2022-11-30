@@ -14,6 +14,7 @@
 		<tags>A2v10 Platform Business PDF Report</tags>
 		<license type="expression">MIT</license>
 		<repository type="git" url="https://github.com/alex-kukhtin/A2v10.Pdf.Report" branch="master"/>
+		<readme>docs\README.md</readme>
 		<references>
 			<group targetFramework=".NETFramework4.8">
 				<reference file="A2v10.Pdf.Report.dll" />
@@ -27,6 +28,10 @@
 		<dependencies>
 			<group targetFramework=".NETFramework4.8">
 				<dependency id="QuestPDF" version="2022.11.0" />
+				<dependency id="SkiaSharp" version="2.88.3" />
+				<dependency id="SkiaSharp.HarfBuzz" version="2.88.3" />
+				<dependency id="System.Memory" version="4.5.5" />
+				<dependency id="System.Runtime.CompilerServices.Unsafe" version="6.0.0" />
 			</group>
 		</dependencies>
 	</metadata>
@@ -35,5 +40,6 @@
 		<file src="bin/Release/netframework4.8/A2v10.Xaml.Report.dll" target="ref/net48" />
 		<file src="bin/Release/netframework4.8/A2v10.Pdf.Report.dll" target="lib/net48" />
 		<file src="bin/Release/netframework4.8/A2v10.Xaml.Report.dll" target="lib/net48" />
+		<file src="README.md" target="docs/" />
 	</files>
 </package>

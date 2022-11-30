@@ -13,8 +13,8 @@ namespace A2v10.Pdf.Report;
 
 internal class ScriptEngine
 {
-	private Engine _engine;
-	private CultureInfo _culture;
+	private readonly Engine _engine;
+	private readonly CultureInfo _culture;
 
 	public ScriptEngine(ExpandoObject model, CultureInfo cultureInfo, String? code)
 	{

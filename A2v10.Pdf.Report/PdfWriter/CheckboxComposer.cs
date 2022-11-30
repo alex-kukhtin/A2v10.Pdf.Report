@@ -1,11 +1,14 @@
 ﻿// Copyright © 2022 Oleksandr Kukhtin. All rights reserved.
 
+using System;
+using System.Dynamic;
+
 using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
 
-using A2v10.Xaml.Report;
-using System;
 using SkiaSharp;
+
+using A2v10.Xaml.Report;
 
 namespace A2v10.Pdf.Report;
 
@@ -39,24 +42,52 @@ internal class CheckboxComposer : FlowElementComposer
 				var rect = new SKRect(0, 0, size.Width, size.Height);
 				canvas.DrawRect(rect, borderPaint);
 
-				// draw mark
-				using var markPaint = new SKPaint()
+				Boolean? val = GetCheckBoxValue(value);
+				if (val != null && val.Value)
 				{
-					Color = SKColors.Black,
-					StrokeWidth = 1.5F,
-					IsStroke = true,
-					StrokeMiter = 1,
-					StrokeCap = SKStrokeCap.Round 
-				};
-				rect.Inflate(-rect.Width / 4, -rect.Height / 4);
-				SKPoint[] markPoints = new SKPoint[]
-				{
-					new SKPoint(rect.Left, rect.Top + rect.Height / 2),
-					new SKPoint(rect.Left + rect.Width / 3, rect.Bottom),
-					new SKPoint(rect.Right, rect.Top)
-				};
-				
-				canvas.DrawPoints(SKPointMode.Polygon, markPoints, markPaint);
+					// draw mark
+					using var markPaint = new SKPaint()
+					{
+						Color = SKColors.Black,
+						StrokeWidth = 1.5F,
+						IsStroke = true,
+						StrokeMiter = 1,
+						StrokeCap = SKStrokeCap.Round
+					};
+					rect.Inflate(-rect.Width / 4, -rect.Height / 4);
+					SKPoint[] markPoints = new SKPoint[]
+					{
+						new SKPoint(rect.Left, rect.Top + rect.Height / 2),
+						new SKPoint(rect.Left + rect.Width / 3, rect.Bottom),
+						new SKPoint(rect.Right, rect.Top)
+					};
+
+					canvas.DrawPoints(SKPointMode.Polygon, markPoints, markPaint);
+				}
 			});
+	}
+
+	Boolean GetCheckBoxValue(Object? scope)
+	{
+		var valBind = _checkbox.GetBindRuntime(nameof(_checkbox.Value));
+		if (valBind != null && valBind.Expression != null)
+		{
+			var accessFunc = _context.Engine.CreateAccessFunction(valBind.Expression);
+			if (accessFunc != null)
+			{
+				Object? res;
+				if (scope is ExpandoObject eoScope)
+					res = _context.Engine.Invoke(accessFunc, eoScope, valBind.Expression);
+				else
+					res = _context.Engine.EvaluateValue(valBind.Expression);
+				if (res != null && res is Boolean resBool)
+					return resBool;
+			}
+		}
+		else if (_checkbox.Value != null)
+		{
+			return _checkbox.Value.Value;
+		}
+		return false;
 	}
 }
