@@ -11,7 +11,7 @@
 		<Authors>Oleksandr Kukthin</Authors>
 		<Company>Oleksandr Kukthin</Company>
 		<Description>A2v10 PDF builder</Description>
-		<Copyright>Copyright © 2022 Oleksandr Kukthin. All rights reserved.</Copyright>
+		<Copyright>Copyright © 2022-2023 Oleksandr Kukthin. All rights reserved.</Copyright>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/alex-kukhtin/A2v10.Pdf.Report</RepositoryUrl>
 		<PackageTags>A2v10 Platform Pdf</PackageTags>
