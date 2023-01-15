@@ -24,7 +24,7 @@ internal static class Program
 		}
 	}
 
-	static void Main(string[] args)
+	static void Main()
 	{
 		var loc = new NullDataLocalizer();
 		var prof = new NullDataProfiler();
@@ -67,10 +67,8 @@ internal static class Program
 			DeleteFile(outPath);
 
 			//builder.Read();
-			using (var outFile = File.OpenWrite(outPath))
-			{
-				builder.Build(outFile);
-			}
+			using var outFile = File.OpenWrite(outPath);
+			builder.Build(outFile);
 		}
 		Process.Start("explorer.exe", outPath);
 	}
