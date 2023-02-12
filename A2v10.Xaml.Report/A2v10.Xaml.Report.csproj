@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>netframework4.8</TargetFramework>
-		<Version>10.0.7918</Version>
+		<Version>10.0.7919</Version>
 		<LangVersion>10</LangVersion>
 		<Nullable>enable</Nullable>
 		<RootNamespace>A2v10.Xaml.Report</RootNamespace>
