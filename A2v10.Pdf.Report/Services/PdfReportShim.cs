@@ -4,6 +4,9 @@ using System;
 using System.Dynamic;
 using System.IO;
 
+using QuestPDF;
+using QuestPDF.Infrastructure;
+
 using A2v10.Infrastructure;
 
 namespace A2v10.Pdf.Report;
@@ -12,6 +15,11 @@ public class PdfReportShim : IPdfReportShim
 {
 	private IReportLocalizer? _localizer = null;
 	private String _rootPath = String.Empty;
+
+	public PdfReportShim()
+	{
+		Settings.License ??= LicenseType.Community;
+	}
 
 	public Stream Build(String path, ExpandoObject data)
 	{

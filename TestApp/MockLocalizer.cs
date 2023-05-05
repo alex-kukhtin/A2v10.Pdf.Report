@@ -7,7 +7,7 @@ namespace TestApp
 {
 	internal class MockLocalizer : IReportLocalizer
 	{
-		public CultureInfo CurrentCulture => new CultureInfo("uk-UA");
+		public CultureInfo CurrentCulture => new("uk-UA");
 
 		public String? Localize(String? content)
 		{

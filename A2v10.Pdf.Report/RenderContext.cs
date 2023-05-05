@@ -96,13 +96,13 @@ internal class RenderContext
 
 	public String? GetValueAsString(Object value, String propertyName = "Content")
 	{
-		var x = _getValueAsString(value, propertyName);
+		var x = GetValueAsStringInt(value, propertyName);
 		if (x == null)
 			return x;
 		return x.Replace("\\n", "\n");
 	}
 
-	private String? _getValueAsString(Object value, String propertyName)
+	private String? GetValueAsStringInt(Object value, String propertyName)
 	{ 
 		if (value == null)
 			return null;
@@ -150,7 +150,7 @@ internal class RenderContext
 		return true;
 	}
 
-	public void ApplyTextStyle(TextStyle textStyle)
+	public void ApplyTextStyle(TextStyle _1/*textStyle*/)
 	{
 	}
 }

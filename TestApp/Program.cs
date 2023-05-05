@@ -5,7 +5,9 @@ using System.IO;
 using System.Reflection;
 using A2v10.Data;
 using A2v10.Pdf.Report;
+using QuestPDF;
 using QuestPDF.Drawing;
+using QuestPDF.Infrastructure;
 
 namespace TestApp;
 
@@ -26,6 +28,8 @@ internal static class Program
 
 	static void Main()
 	{
+		Settings.License = LicenseType.Community;
+
 		var loc = new NullDataLocalizer();
 		var prof = new NullDataProfiler();
 		var config = new SimpleDataConfiguration();

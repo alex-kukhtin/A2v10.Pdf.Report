@@ -29,9 +29,8 @@ internal class ReportDocument : IDocument
 
 	public DocumentMetadata GetMetadata()
 	{
-		var title = _context.GetValueAsString(_page, "Title");
-		if (title == null)
-			title = _page.Title;
+		var title = _context.GetValueAsString(_page, "Title")
+			?? _page.Title;
 		var md = DocumentMetadata.Default;
 		md.Title = title;
 		return md;

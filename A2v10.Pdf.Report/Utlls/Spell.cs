@@ -24,7 +24,7 @@ public enum SpellType
 
 public static class SpellString
 {
-	static SpellType[] _intTypes = new SpellType[5] 
+	static readonly SpellType[] _intTypes = new SpellType[5] 
 	{
 		SpellType.zero ,SpellType.one, SpellType.two, SpellType.two, SpellType.two,
 	};
@@ -42,7 +42,7 @@ public static class SpellString
 			intPart = vals[0];
 			fractPart = vals[1];
 		}
-		return _spellNumber(intPart, nums, gender, out SpellType type);
+		return SpellNumberInt(intPart, nums, gender, out SpellType type);
 	}
 
 	public static String SpellCurrency(Decimal val, CultureInfo culture, String currencyCode)
@@ -62,7 +62,7 @@ public static class SpellString
 
 		var sb = new StringBuilder();
 
-		sb.Append(_spellNumber(intPart, nums, currencyDesc.CeilGender, out SpellType type));
+		sb.Append(SpellNumberInt(intPart, nums, currencyDesc.CeilGender, out SpellType type));
 		sb.Append(" ");
 		sb.Append(currencyDesc.NameCeil(type));
 		sb.Append(" ");
@@ -80,7 +80,7 @@ public static class SpellString
 		if (String.IsNullOrEmpty(fract))
 			return SpellType.zero;
 		// xx[\0or или x[\0]
-		Int32 dig = 0;
+		Int32 dig;
 		if (fract[1] == '0') {
 			dig = (int)(fract[0] - '0');
 		}  else { 
@@ -102,7 +102,7 @@ public static class SpellString
 		return SpellType.zero;
 	}
 
-	private static String _spellNumber(String number, LangNumbers numbers, SpellGender gender, out SpellType type)
+	private static String SpellNumberInt(String number, LangNumbers numbers, SpellGender gender, out SpellType type)
 	{
 		type = SpellType.zero;
 		if (String.IsNullOrEmpty(number) || number == "0" || number == "00")
@@ -110,7 +110,7 @@ public static class SpellString
 
 		Int32 len = number.Length;
 
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new();
 
 		var cha = number.ToCharArray();
 		Array.Reverse(cha);

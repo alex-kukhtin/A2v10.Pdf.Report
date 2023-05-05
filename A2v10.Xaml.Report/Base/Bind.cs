@@ -14,8 +14,7 @@ public class Bind : MarkupExtension, ISupportBinding
 	{
 		get
 		{
-			if (_bindImpl == null)
-				_bindImpl = new BindImpl();
+			_bindImpl ??= new BindImpl();
 			return _bindImpl;
 		}
 	}
@@ -47,7 +46,7 @@ public class Bind : MarkupExtension, ISupportBinding
 
 	public override Object? ProvideValue(IServiceProvider serviceProvider)
 	{
-		if (!(serviceProvider.GetService(typeof(IProvideValueTarget)) is IProvideValueTarget iTarget))
+		if (serviceProvider.GetService(typeof(IProvideValueTarget)) is not IProvideValueTarget iTarget)
 			return null;
 		if (iTarget.TargetProperty is not PropertyInfo targetProp)
 			return null;
