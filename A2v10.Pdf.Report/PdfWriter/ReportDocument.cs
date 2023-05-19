@@ -35,4 +35,9 @@ internal class ReportDocument : IDocument
 		md.Title = title;
 		return md;
 	}
+
+	public DocumentSettings GetSettings()
+	{
+		return DocumentSettings.Default;
+	}
 }

@@ -10,6 +10,7 @@ using System.Dynamic;
 
 namespace A2v10.Pdf.Report;
 
+using Image = A2v10.Xaml.Report.Image;
 internal class ImageComposer : FlowElementComposer
 {
 	private readonly Image _image;
@@ -32,7 +33,7 @@ internal class ImageComposer : FlowElementComposer
 			var rtBind = _image.GetBindRuntime("FileName");
 			if (rtBind != null && rtBind.Expression != null)
 			{
-				String? fileName = null;
+				String? fileName;
 				var accessFunc = _context.Engine.CreateAccessFunction(rtBind.Expression);
 				if (accessFunc != null && value is ExpandoObject eoValue)
 					fileName = _context.Engine.Invoke(accessFunc, eoValue, rtBind?.Expression)?.ToString();
@@ -51,7 +52,7 @@ internal class ImageComposer : FlowElementComposer
 				container = container.Width(_image.Width.Value, _image.Width.Unit.ToUnit());
 			if (_image.Height != null)
 				container = container.Width(_image.Height.Value, _image.Height.Unit.ToUnit());
-			container.Image(stream, ImageScaling.FitArea);
+			container.Image(stream).FitArea();
 		}
 	}
 }

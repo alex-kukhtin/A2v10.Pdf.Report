@@ -7,20 +7,20 @@ namespace A2v10.Pdf.Report.Utils;
 
 internal abstract class CurrencyDescr
 {
-	protected abstract CurrencyDef _descr { get; }
+	protected abstract CurrencyDef Descr { get; }
 
 	public String NameCeil(SpellType unit)
 	{
-		return _descr.Ceils[(Int32) unit];
+		return Descr.Ceils[(Int32) unit];
 	}
 
 	public String NameFract(SpellType unit)
 	{
-		return _descr.Fracts[(Int32) unit];
+		return Descr.Fracts[(Int32) unit];
 	}
 
-	public SpellGender CeilGender => _descr.CeilGender;
-	public SpellGender FractGender => _descr.FractGender;
+	public SpellGender CeilGender => Descr.CeilGender;
+	public SpellGender FractGender => Descr.FractGender;
 
 	public static CurrencyDescr FromCulture(CultureInfo culture, String currencyCode)
 	{
@@ -77,6 +77,6 @@ internal class CurrencyDescrUA : CurrencyDescr
 			_ => throw new ArgumentOutOfRangeException($"Currency descriptor for '{currencyCode}' yet not implemented")
 		};
 	}
-	protected override CurrencyDef _descr => _current;
+	protected override CurrencyDef Descr => _current;
 }
 

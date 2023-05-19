@@ -11,20 +11,10 @@ namespace A2v10.Pdf.Report;
 internal class LineComposer : FlowElementComposer
 {
 	private readonly Line _line;
-	private readonly RenderContext _context;
 
-	public LineComposer(Line line, RenderContext context)
+	public LineComposer(Line line, RenderContext _1/*context*/)
 	{
 		_line = line;
-		_context = context;
-	}
-
-	void ApplyRuntimeStyle(TextDescriptor _)
-	{
-	}
-
-	void ApplyRuntimeStyle(TextSpanDescriptor descr, ContentElement _)
-	{
 	}
 
 	internal override void Compose(IContainer container, Object? value = null)

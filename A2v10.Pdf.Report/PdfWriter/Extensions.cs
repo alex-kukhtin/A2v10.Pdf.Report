@@ -8,6 +8,8 @@ using QuestPDF.Infrastructure;
 
 namespace A2v10.Pdf.Report;
 
+using Image = A2v10.Xaml.Report.Image;
+
 internal static class Extensions
 {
 	public static FlowElementComposer CreateComposer(this FlowElement elem, RenderContext context)
