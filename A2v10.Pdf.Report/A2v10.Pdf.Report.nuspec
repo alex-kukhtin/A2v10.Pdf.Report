@@ -27,7 +27,7 @@
 		</contentFiles>
 		<dependencies>
 			<group targetFramework=".NETFramework4.8">
-				<dependency id="QuestPDF" version="2023.5.0" />
+				<dependency id="QuestPDF" version="2023.5.1" />
 				<dependency id="SkiaSharp" version="2.88.3" />
 				<dependency id="SkiaSharp.HarfBuzz" version="2.88.3" />
 				<dependency id="System.Memory" version="4.5.5" />
