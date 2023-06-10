@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netframework4.8</TargetFramework>
-		<Version>10.0.7935</Version>
+		<Version>10.0.7936</Version>
 		<LangVersion>10</LangVersion>
 		<Nullable>enable</Nullable>
 		<RootNamespace>A2v10.Pdf.Report</RootNamespace>
@@ -24,7 +24,7 @@
 	<ItemGroup>
 		<PackageReference Include="HarfBuzzSharp" Version="2.8.2.3" />
 		<PackageReference Include="Jint" Version="3.0.0-beta-2049" />
-		<PackageReference Include="QuestPDF" Version="2023.5.1" />
+		<PackageReference Include="QuestPDF" Version="2023.5.2" />
 		<PackageReference Include="SkiaSharp" Version="2.88.3" />
 		<PackageReference Include="SkiaSharp.HarfBuzz" Version="2.88.3" />
 		<PackageReference Include="System.Memory" Version="4.5.5" />
