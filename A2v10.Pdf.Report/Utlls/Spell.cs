@@ -45,7 +45,22 @@ public static class SpellString
 		return SpellNumberInt(intPart, nums, gender, out SpellType type);
 	}
 
-	public static String SpellCurrency(Decimal val, CultureInfo culture, String currencyCode)
+    public static String SpellEn(Decimal val)
+    {
+		var nums = new LangNumbersEN();
+        var strPresentation = val.ToString("F2", CultureInfo.InvariantCulture);
+        var vals = strPresentation.Split('.');
+        String intPart = strPresentation;
+        String fractPart = String.Empty;
+        if (vals.Length == 2)
+        {
+            intPart = vals[0];
+            fractPart = vals[1];
+        }
+        return SpellNumberIntEn(intPart, nums);
+    }
+
+    public static String SpellCurrency(Decimal val, CultureInfo culture, String currencyCode)
 	{
 		var nums = LangNumbers.FromCulture(culture);
 		var strPresentation = val.ToString("F2", CultureInfo.InvariantCulture);
@@ -74,7 +89,36 @@ public static class SpellString
 
 	}
 
-	static SpellType LastNumberFract(String fract)
+    public static String SpellCurrencyEn(Decimal val, String currencyCode)
+    {
+        var nums = new LangNumbersEN();
+        var strPresentation = val.ToString("F2", CultureInfo.InvariantCulture);
+        var vals = strPresentation.Split('.');
+        String intPart = strPresentation;
+        String fractPart = String.Empty;
+        if (vals.Length == 2)
+        {
+            intPart = vals[0];
+            fractPart = vals[1];
+        }
+
+		var currencyDesc = new CurrencyDescrEN(currencyCode);
+
+        var sb = new StringBuilder();
+
+        sb.Append(SpellNumberIntEn(intPart, nums));
+        sb.Append(" ");
+		sb.Append(currencyDesc.NameCeil(intPart == "1" ? SpellType.one : SpellType.zero));
+        sb.Append(" and ");
+        sb.Append(fractPart);
+        sb.Append(" ");
+        sb.Append(currencyDesc.NameFract(fractPart == "01" ? SpellType.one : SpellType.zero));
+        sb[0] = Char.ToUpper(sb[0]);
+        return sb.ToString();
+
+    }
+
+    static SpellType LastNumberFract(String fract)
 	{
 		// 0,1,2
 		if (String.IsNullOrEmpty(fract))
@@ -182,4 +226,73 @@ public static class SpellString
 			sb.Remove(sb.Length - 1, 1);
 		return sb.ToString().Trim();
 	}
+
+
+    private static String SpellNumberIntEn(String number, LangNumbers numbers)
+    {
+        if (String.IsNullOrEmpty(number) || number == "0" || number == "00")
+            return numbers.Null(SpellGender.Male).Trim();
+
+        Int32 len = number.Length;
+
+        StringBuilder sb = new();
+
+        var cha = number.ToCharArray();
+        Array.Reverse(cha);
+        number = new String(cha);
+
+        Int32 k = len / 3;
+        switch (len % 3)
+        {
+            case 0:
+                k--;
+                break;
+            case 1:
+                number += "00";
+                break;
+            case 2:
+                number += "0";
+                break;
+        }
+
+        for (int i = k; i >= 0; i--)
+        {
+            var trigraph = number.Substring(i * 3, 3);
+            if (trigraph == "000")
+                continue;
+            int hundred = trigraph[2] - '0';
+            int ten = (trigraph[1] - '0');
+            int tenAndUnit = (trigraph[1] - '0') * 10 + (trigraph[0] - '0');
+            int unit = trigraph[0] - '0';
+
+			if (hundred > 0)
+			{
+				sb.Append(numbers.Unit(hundred));
+				sb.Append("hundred ");
+			}
+			if (tenAndUnit > 0)
+			{
+				if (tenAndUnit > 20)
+				{
+					if (unit > 0)
+					{
+                        sb.Append(numbers.Ten(ten).TrimEnd());
+                        sb.Append('-');
+						sb.Append(numbers.Unit(unit));
+					}
+					else
+                        sb.Append(numbers.Ten(ten));
+                }
+                else
+				{
+                    sb.Append(numbers.Unit(tenAndUnit));
+                }
+            }
+            sb.Append(numbers.Name(0, i));
+        }
+        // remove last space
+        if (sb[sb.Length - 1] == ' ')
+            sb.Remove(sb.Length - 1, 1);
+        return sb.ToString().Trim();
+    }
 }

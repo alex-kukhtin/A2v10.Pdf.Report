@@ -1,4 +1,4 @@
-﻿// Copyright © 2022 Oleksandr Kukhtin. All rights reserved.
+﻿// Copyright © 2022-2023 Oleksandr Kukhtin. All rights reserved.
 
 using System;
 using System.Globalization;
@@ -45,12 +45,12 @@ internal abstract class LangNumbers
 		return _ten[index];
 	}
 
-	public String Null(SpellGender gender)
+	public String Null(SpellGender _1/*gender*/)
 	{
 		return _unit[0];
 	}
 
-	public String Unit(Int32 index, SpellGender gender)
+	public String Unit(Int32 index, SpellGender gender = SpellGender.Neutral)
 	{
 		if (index < 0 || index >= _unit.Length)
 			throw new ArgumentOutOfRangeException(nameof(Unit));
@@ -83,6 +83,7 @@ internal abstract class LangNumbers
 		return culture.TwoLetterISOLanguageName switch
 		{
 			"uk" => new LangNumbersUA(),
+			"en" => new LangNumbersEN(),
 			 _ => throw new InvalidOperationException($"Spell for '{culture.Name}' yet not supported")
 		};
 	}
@@ -104,5 +105,23 @@ internal class LangNumbersUA : LangNumbers
 	protected override String[] _unitFemale => _unitFemaleUa;
 	protected override String[] _unitMale => _unitMaleUa;
 	protected override String[] _unitNeutral => _unitNeutralUa;
+}
+
+internal class LangNumbersEN : LangNumbers
+{
+	private static String[] _hundredEn = ",,,,,,,,,".Split(',');
+    private static String[] _tenEn = ",,twenty ,thirty ,forty ,fifty ,sixty ,seventy ,eighty ,ninety ".Split(',');
+    private static String[] _unitEn = "zero ,one ,two ,three ,four ,five ,six ,seven ,eight ,nine ,ten ,eleven ,twelve ,thirteen ,fourteen ,fifteen ,sixteen ,seventeen ,eighteen ,nineteen ".Split(',');
+    private static String[] _nameEn = ",thousand ,million ,billion ,trillion ,,,,,,,,,,".Split(',');
+    private static String[] _unitFemaleEn = ",,".Split(',');
+    private static String[] _unitNeutralEn = ",one ,two ".Split(',');
+    private static String[] _unitMaleEn = ",,".Split(',');
+    protected override String[] _hundred => _hundredEn;
+    protected override String[] _ten => _tenEn;
+    protected override String[] _unit => _unitEn;
+    protected override String[] _name => _nameEn;
+    protected override String[] _unitFemale => _unitFemaleEn;
+    protected override String[] _unitMale => _unitMaleEn;
+    protected override String[] _unitNeutral => _unitNeutralEn;
 }
 

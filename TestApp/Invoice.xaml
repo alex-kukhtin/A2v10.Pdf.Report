@@ -12,6 +12,8 @@
 		
 		const insideFunc = (arg) => arg?.toString();
 		
+		const spellDollar = (sum) => spellMoneyEn(sum, '840');
+		
 		]]>
 	</Page.Code>
 	<Page.Title>
@@ -74,6 +76,9 @@
 		</Text>
 		<Text Padding="10pt" Border="1pt" Margin="10pt" FontSize="20">
 			<Span Content="{Bind spellMoney(Document.Sum)}"/>
+		</Text>
+		<Text Padding="10pt" Border="1pt" Margin="10pt" FontSize="20">
+			<Span Content="{Bind spellDollar(Document.Sum)}"/>
 		</Text>
 		<Text>
 			<Span>
