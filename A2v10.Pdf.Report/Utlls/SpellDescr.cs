@@ -91,13 +91,13 @@ internal abstract class LangNumbers
 
 internal class LangNumbersUA : LangNumbers
 {
-	private static String[] _hundredUa = ",сто ,двісті ,триста ,чотириста ,п’ятсот ,шістсот ,сімсот ,вісімсот ,дев’ятсот ".Split(',');
-	private static String[] _tenUa = ",,двадцять ,тридцять ,сорок ,п’ятдесят ,шістдесят ,сімдесят ,вісімдесят ,дев’яносто ".Split(',');
-	private static String[] _unitUa = "нуль ,один ,два ,три ,чотири ,п’ять ,шість ,сім ,вісім ,дев’ять ,десять ,одинадцять ,двaнадцять ,тринадцять ,чотирнадцять ,п’ятнадцять ,шістнадцять ,сімнадцять ,вісімнадцять ,дев’ятнадцять ".Split(',');
-	private static String[] _nameUA = ",тисяча ,мільйон ,мільярд ,трильйон ,,тисячі ,мільйона ,мільярда ,трильйона ,,тисяч ,мільйонів ,мільярдів ,трильйонів ".Split(',');
-	private static String[] _unitFemaleUa = ",одна ,дві ".Split(',');
-	private static String[] _unitNeutralUa = ",одне ,два ".Split(',');
-	private static String[] _unitMaleUa = ",один ,два ".Split(',');
+	private readonly static String[] _hundredUa = ",сто ,двісті ,триста ,чотириста ,п’ятсот ,шістсот ,сімсот ,вісімсот ,дев’ятсот ".Split(',');
+	private readonly static String[] _tenUa = ",,двадцять ,тридцять ,сорок ,п’ятдесят ,шістдесят ,сімдесят ,вісімдесят ,дев’яносто ".Split(',');
+	private readonly static String[] _unitUa = "нуль ,один ,два ,три ,чотири ,п’ять ,шість ,сім ,вісім ,дев’ять ,десять ,одинадцять ,двaнадцять ,тринадцять ,чотирнадцять ,п’ятнадцять ,шістнадцять ,сімнадцять ,вісімнадцять ,дев’ятнадцять ".Split(',');
+	private readonly static String[] _nameUA = ",тисяча ,мільйон ,мільярд ,трильйон ,,тисячі ,мільйона ,мільярда ,трильйона ,,тисяч ,мільйонів ,мільярдів ,трильйонів ".Split(',');
+	private readonly static String[] _unitFemaleUa = ",одна ,дві ".Split(',');
+	private readonly static String[] _unitNeutralUa = ",одне ,два ".Split(',');
+	private readonly static String[] _unitMaleUa = ",один ,два ".Split(',');
 	protected override String[] _hundred => _hundredUa;
 	protected override String[] _ten => _tenUa;
 	protected override String[] _unit => _unitUa;
@@ -109,13 +109,13 @@ internal class LangNumbersUA : LangNumbers
 
 internal class LangNumbersEN : LangNumbers
 {
-	private static String[] _hundredEn = ",,,,,,,,,".Split(',');
-    private static String[] _tenEn = ",,twenty ,thirty ,forty ,fifty ,sixty ,seventy ,eighty ,ninety ".Split(',');
-    private static String[] _unitEn = "zero ,one ,two ,three ,four ,five ,six ,seven ,eight ,nine ,ten ,eleven ,twelve ,thirteen ,fourteen ,fifteen ,sixteen ,seventeen ,eighteen ,nineteen ".Split(',');
-    private static String[] _nameEn = ",thousand ,million ,billion ,trillion ,,,,,,,,,,".Split(',');
-    private static String[] _unitFemaleEn = ",,".Split(',');
-    private static String[] _unitNeutralEn = ",one ,two ".Split(',');
-    private static String[] _unitMaleEn = ",,".Split(',');
+	private readonly static String[] _hundredEn = ",,,,,,,,,".Split(',');
+    private readonly static String[] _tenEn = ",,twenty ,thirty ,forty ,fifty ,sixty ,seventy ,eighty ,ninety ".Split(',');
+    private readonly static String[] _unitEn = "zero ,one ,two ,three ,four ,five ,six ,seven ,eight ,nine ,ten ,eleven ,twelve ,thirteen ,fourteen ,fifteen ,sixteen ,seventeen ,eighteen ,nineteen ".Split(',');
+    private readonly static String[] _nameEn = ",thousand ,million ,billion ,trillion ,,,,,,,,,,".Split(',');
+    private readonly static String[] _unitFemaleEn = ",,".Split(',');
+    private readonly static String[] _unitNeutralEn = ",one ,two ".Split(',');
+    private readonly static String[] _unitMaleEn = ",,".Split(',');
     protected override String[] _hundred => _hundredEn;
     protected override String[] _ten => _tenEn;
     protected override String[] _unit => _unitEn;
