@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netframework4.8</TargetFramework>
-		<Version>10.0.7947</Version>
+		<Version>10.0.7948</Version>
 		<LangVersion>10</LangVersion>
 		<Nullable>enable</Nullable>
 		<RootNamespace>A2v10.Pdf.Report</RootNamespace>
@@ -22,11 +22,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HarfBuzzSharp" Version="2.8.2.5" />
-		<PackageReference Include="Jint" Version="3.0.0-beta-2051" />
+		<PackageReference Include="HarfBuzzSharp" Version="7.3.0" />
+		<PackageReference Include="Jint" Version="3.0.0-beta-2052" />
 		<PackageReference Include="QuestPDF" Version="2023.6.3" />
-		<PackageReference Include="SkiaSharp" Version="2.88.5" />
-		<PackageReference Include="SkiaSharp.HarfBuzz" Version="2.88.5" />
+		<PackageReference Include="SkiaSharp" Version="2.88.6" />
+		<PackageReference Include="SkiaSharp.HarfBuzz" Version="2.88.6" />
 		<PackageReference Include="System.Memory" Version="4.5.5" />
 		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
 	</ItemGroup>
@@ -34,9 +34,5 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\A2v10\Shared\A2v10.Infrastructure\A2v10.Infrastructure.csproj" />
 		<ProjectReference Include="..\A2v10.Xaml.Report\A2v10.Xaml.Report.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Resources\" />
 	</ItemGroup>
 </Project>
