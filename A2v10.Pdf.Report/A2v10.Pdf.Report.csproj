@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netframework4.8</TargetFramework>
-		<Version>10.0.7953</Version>
+		<Version>10.0.7954</Version>
 		<LangVersion>10</LangVersion>
 		<Nullable>enable</Nullable>
 		<RootNamespace>A2v10.Pdf.Report</RootNamespace>
@@ -11,7 +11,7 @@
 		<Authors>Oleksandr Kukthin</Authors>
 		<Company>Oleksandr Kukthin</Company>
 		<Description>A2v10 PDF builder</Description>
-		<Copyright>Copyright © 2022-2023 Oleksandr Kukthin. All rights reserved.</Copyright>
+		<Copyright>Copyright © 2022-2024 Oleksandr Kukthin. All rights reserved.</Copyright>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/alex-kukhtin/A2v10.Pdf.Report</RepositoryUrl>
 		<PackageTags>A2v10 Platform Pdf</PackageTags>
@@ -23,8 +23,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="HarfBuzzSharp" Version="7.3.0" />
-		<PackageReference Include="Jint" Version="3.0.0-beta-2057" />
-		<PackageReference Include="QuestPDF" Version="2023.12.1" />
+		<PackageReference Include="Jint" Version="3.0.0-beta-2058" />
+		<PackageReference Include="QuestPDF" Version="2023.12.2" />
 		<PackageReference Include="SkiaSharp" Version="2.88.6" />
 		<PackageReference Include="SkiaSharp.HarfBuzz" Version="2.88.6" />
 		<PackageReference Include="System.Memory" Version="4.5.5" />
