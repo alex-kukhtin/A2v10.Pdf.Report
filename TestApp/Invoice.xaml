@@ -1,5 +1,5 @@
 ﻿<Page xmlns="clr-namespace:A2v10.Xaml.Report;assembly=A2v10.Xaml.Report"
-	  Orientation="Portrait" FontFamily="Arial" FontSize="12">
+	  Orientation="Portrait" FontFamily="Verdana" FontSize="12">
 	<Page.Code>
 		<![CDATA[
 		function test() {
@@ -31,6 +31,11 @@
 	<Column>
 		<Image FileName="{Bind fileName()}" Width="2cm" Height="2cm" Border="1pt"/>
 		<Checkbox Value="True"/>
+		<Text Align="Center">asdasdasdasd asd asd asd asd asd asd ko';lk kasdp[ aspdo a[sod asod apdo a[od a[sod a[od aspd
+		asdadas asdklwp[ sdlf owsr
+		-so ]Sfd ][oas [foS [fo as[re 0a=wfHSLFDuAS)I 
+		Z+_ofsddr-0SAFZ_XV =_zSDzxVCHXZHGO(sZX
+		V;DFGGSDG</Text>
 		<Table Columns="5cm,5cm,5cm,1fr">
 			<TableRow>
 				<TableCell Background="#ffff00">
