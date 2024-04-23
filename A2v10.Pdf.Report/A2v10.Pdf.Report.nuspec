@@ -27,10 +27,10 @@
 		</contentFiles>
 		<dependencies>
 			<group targetFramework=".NETFramework4.8">
-				<dependency id="QuestPDF" version="2023.12.6" />
+				<dependency id="QuestPDF" version="2024.3.0" />
 				<dependency id="System.Memory" version="4.5.5" />
 				<dependency id="System.Runtime.CompilerServices.Unsafe" version="6.0.0" />
-				<dependency id="Jint" version="3.0.0" />
+				<dependency id="Jint" version="3.1.0" />
 			</group>
 		</dependencies>
 	</metadata>
