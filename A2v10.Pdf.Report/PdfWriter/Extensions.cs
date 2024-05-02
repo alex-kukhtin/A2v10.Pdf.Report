@@ -1,4 +1,4 @@
-﻿// Copyright © 2022 Oleksandr Kukhtin. All rights reserved.
+﻿// Copyright © 2022-2024 Oleksandr Kukhtin. All rights reserved.
 
 using System;
 
@@ -24,6 +24,7 @@ internal static class Extensions
 			List list => new ListComposer(list, context),
 			Inlined inlined => new InlinedComposer(inlined, context),
 			Checkbox checkbox => new CheckboxComposer(checkbox, context),
+			QrCode qrCode => new QrCodeComposer(qrCode, context),
 			_ => throw new InvalidOperationException($"There is no composer for {elem.GetType()}")
 		};
 	}

@@ -31,6 +31,7 @@
 	<Column>
 		<Image FileName="{Bind fileName()}" Width="2cm" Height="2cm" Border="1pt"/>
 		<Checkbox Value="True"/>
+		<QrCode Size="7cm" Value="{Bind docTitle(Document)}" Border="1pt" Margin="1cm" Padding="1cm" Align="Center"></QrCode>
 		<Text Align="Center">asdasdasdasd asd asd asd asd asd asd ko';lk kasdp[ aspdo a[sod asod apdo a[od a[sod a[od aspd
 		asdadas asdklwp[ sdlf owsr
 		-so ]Sfd ][oas [foS [fo as[re 0a=wfHSLFDuAS)I 

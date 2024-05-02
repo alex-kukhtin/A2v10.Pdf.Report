@@ -1,4 +1,5 @@
-﻿
+﻿// Copyright © 2022-2024 Oleksandr Kukhtin. All rights reserved.
+
 using System;
 using System.Dynamic;
 using System.Globalization;
@@ -39,7 +40,7 @@ internal class RenderContext
 		if (value == null)
 			return String.Empty;
 
-		var ni = _localizer.CurrentCulture.Clone();
+		//var ni = _localizer.CurrentCulture.Clone();
 
 		if (!String.IsNullOrEmpty(format))
 			return String.Format(_formatProvider, $"{{0:{format}}}", value);
