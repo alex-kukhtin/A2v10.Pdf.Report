@@ -72,7 +72,25 @@ internal static class Program
 
 			//builder.Read();
 			using var outFile = File.OpenWrite(outPath);
+
+			Stopwatch sw = Stopwatch.StartNew();
 			builder.Build(outFile);
+
+			Console.WriteLine($"Total time: {sw.ElapsedMilliseconds} ms");
+		}
+		using (var stream = File.OpenRead(path))
+		{
+			var builder = new PdfBuilder(Path.GetDirectoryName(path), localizer, path, stream, dm.Root);
+
+			DeleteFile(outPath);
+
+			//builder.Read();
+			using var outFile = File.OpenWrite(outPath);
+
+			Stopwatch sw = Stopwatch.StartNew();
+			builder.Build(outFile);
+
+			Console.WriteLine($"Total time: {sw.ElapsedMilliseconds} ms");
 		}
 		Process.Start("explorer.exe", outPath);
 	}
