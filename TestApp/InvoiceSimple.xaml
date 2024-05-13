@@ -1,4 +1,13 @@
 ﻿<Page xmlns="clr-namespace:A2v10.Xaml.Report;assembly=A2v10.Xaml.Report"
-		Title="Invoice Simple" FontFamily="Arial" FontSize="12" Margin="0.75cm,1.5cm,.75cm,1cm">
-	
+		Title="Invoice Simple" Margin="0.75cm,1.5cm,.75cm,1cm">
+	<Column>
+		<Table>
+			<TableRow>
+				<TableCell>1</TableCell>
+				<TableCell>2</TableCell>
+				<TableCell>3</TableCell>
+				<TableCell>4</TableCell>
+			</TableRow>
+		</Table>
+	</Column>
 </Page>

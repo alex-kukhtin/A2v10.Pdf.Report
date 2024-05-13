@@ -75,6 +75,7 @@ internal static class Program
 
 			Stopwatch sw = Stopwatch.StartNew();
 			builder.Build(outFile);
+			outFile.Close();
 
 			Console.WriteLine($"Total time: {sw.ElapsedMilliseconds} ms");
 		}
@@ -89,6 +90,7 @@ internal static class Program
 
 			Stopwatch sw = Stopwatch.StartNew();
 			builder.Build(outFile);
+			outFile.Close();
 
 			Console.WriteLine($"Total time: {sw.ElapsedMilliseconds} ms");
 		}

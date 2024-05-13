@@ -7,6 +7,7 @@ using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
 
 using A2v10.Xaml.Report;
+using SkiaSharp;
 
 namespace A2v10.Pdf.Report;
 
@@ -26,6 +27,7 @@ internal class CheckboxComposer : FlowElementComposer
 		if (!_context.IsVisible(_checkbox))
 			return;
 		// 1pt = 1.333(3) px
+		/*
 		Boolean val = GetCheckBoxValue(value);
 		String checkMark = val ? "<polyline points='4,8 7,12 12,4' fill='none' stroke='black' stroke-width='2'/>" : String.Empty;
 		String svgText = $"<svg viewBox='0 0 16 16'><rect x='0' y='0' width='16' height='16' fill='none' stroke-width='1.333' stroke='black'/>{checkMark}</svg>";
@@ -34,7 +36,10 @@ internal class CheckboxComposer : FlowElementComposer
 			.Width(12, Unit.Point)
 			.Height(12, Unit.Point)
 			.Svg(svgImage);
-		/*
+		*/
+		container.ApplyDecoration(_checkbox.RuntimeStyle)
+			.Width(12, Unit.Point)
+			.Height(12, Unit.Point)
 		.Canvas((canvas, size) =>
 		{
 			using var borderPaint = new SKPaint()
@@ -61,15 +66,14 @@ internal class CheckboxComposer : FlowElementComposer
 				rect.Inflate(-rect.Width / 4, -rect.Height / 4);
 				SKPoint[] markPoints = new SKPoint[]
 				{
-					new SKPoint(rect.Left, rect.Top + rect.Height / 2),
-					new SKPoint(rect.Left + rect.Width / 3, rect.Bottom),
-					new SKPoint(rect.Right, rect.Top)
+					new (rect.Left, rect.Top + rect.Height / 2),
+					new (rect.Left + rect.Width / 3, rect.Bottom),
+					new (rect.Right, rect.Top)
 				};
 
 				canvas.DrawPoints(SKPointMode.Polygon, markPoints, markPaint);
 			}
 		});
-		*/
 	}
 
 	Boolean GetCheckBoxValue(Object? scope)
