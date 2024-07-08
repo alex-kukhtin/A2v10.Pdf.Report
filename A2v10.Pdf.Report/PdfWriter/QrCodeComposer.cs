@@ -29,7 +29,7 @@ internal class QrCodeComposer : FlowElementComposer
 		container = container.ApplyDecoration(_code.RuntimeStyle);
 		if (_context.IsVisible(_code))
 		{
-			var strCode = _context.GetValueAsString(_code, nameof(QrCode.Value));
+			var strCode = _context.GetValueAsString(_code, nameof(QrCode.Value)) ?? string.Empty;
 
 			var gen = new QRCodeGenerator();
 			var qrCodeData = gen.CreateQrCode(strCode, QRCodeGenerator.ECCLevel.Q);
