@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netframework4.8</TargetFramework>
-		<Version>10.0.7976</Version>
+		<Version>10.0.7977</Version>
 		<LangVersion>10</LangVersion>
 		<Nullable>enable</Nullable>
 		<RootNamespace>A2v10.Pdf.Report</RootNamespace>
@@ -22,16 +22,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Jint" Version="4.2.0" />
+		<PackageReference Include="Jint" Version="4.2.2" />
 		<PackageReference Include="QRCoder" Version="1.6.0" />
 		<PackageReference Include="QuestPDF" Version="2023.12.6" />
-		<PackageReference Include="System.Buffers" Version="4.6.0" />
-		<PackageReference Include="System.Memory" Version="4.6.0" />
-		<PackageReference Include="System.Numerics.Vectors" Version="4.6.0" />
-		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.0" />
-		<!--
-		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
-		-->
+		<PackageReference Include="System.Buffers" Version="4.6.1" />
+		<PackageReference Include="System.Memory" Version="4.6.3" />
+		<PackageReference Include="System.Numerics.Vectors" Version="4.6.1" />
+		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
 	</ItemGroup>
 
 	<ItemGroup>
