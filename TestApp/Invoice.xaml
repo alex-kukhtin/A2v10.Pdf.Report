@@ -105,6 +105,7 @@
 							<TableColumn />
 							<TableColumn />
 							<TableColumn />
+							<TableColumn />
 						</Table.Columns>
 						<TableRow>
 							<TableCell Content="in cell 1" />
@@ -113,6 +114,7 @@
 							<TableCell>
 								<Checkbox Value="{Bind Expression='Sum > 150'}" />
 							</TableCell>
+							<TableCell Content="{Bind IsStock}"/>
 						</TableRow>
 					</Table>
 				</TableCell>
@@ -121,7 +123,7 @@
 		<Text xml:space="preserve" ShowEntire="False">First line
 Second line</Text>
 		<Table ItemsSource="{Bind Document.Rows}" Style="Details"
-			   Columns="1cm,1fr,2cm,20mm,28mm,28mm">
+			   Columns="1cm,1fr,2cm,20mm,28mm,28mm,7mm">
 			<Table.Header>
 				<TableRow>
 					<TableCell RowSpan="2">
@@ -134,6 +136,7 @@ Second line</Text>
 					<TableCell ColSpan="2">Qty</TableCell>
 					<TableCell RowSpan="2" Padding="8mm,0">Price</TableCell>
 					<TableCell RowSpan="2" Align="Center">Sum</TableCell>
+					<TableCell RowSpan="2"/>
 				</TableRow>
 				<TableRow>
 					<TableCell />
@@ -149,6 +152,17 @@ Second line</Text>
 				<TableCell Content="{Bind Qty, DataType=Number}"/>
 				<TableCell Content="{Bind Price, DataType=Currency}"/>
 				<TableCell Content="{Bind Sum, DataType=Currency}" Align="Center"/>
+				<TableCell />
+			</TableRow>
+			<TableRow If="{Bind IsStock}">
+				<TableCell ColSpan="3"/>
+				<TableCell Content="{Bind IsStock}" Bold="True"/>
+				<TableCell ColSpan="3"/>
+			</TableRow>
+			<TableRow If="{Bind !IsStock}">
+				<TableCell ColSpan="3"/>
+				<TableCell Content="{Bind IsStock}" Italic="True"/>
+				<TableCell ColSpan="3"/>
 			</TableRow>
 			<Table.Footer>
 				<TableRow>

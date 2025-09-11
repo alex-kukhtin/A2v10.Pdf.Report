@@ -134,7 +134,25 @@ internal class RenderContext
 		return null;
 	}
 
-	public Boolean IsVisible(XamlElement elem)
+	private Boolean GetBoolVal(ExpandoObject data, String? path)
+	{
+		if (path == null)
+			return false;
+		Boolean bInvert = false;
+		if (path.StartsWith("!"))
+		{
+			bInvert = true;
+			path = path.Substring(1);
+		}
+		var val = data.Eval<Object>(path);
+		if (val is Boolean boolVal)
+			return bInvert ? !boolVal : boolVal;
+		if (val == null)
+			return bInvert ? true : false;
+		return bInvert ? false : true;
+	}
+
+	public Boolean IsVisible(XamlElement elem, ExpandoObject? data = null)
 	{
 		var ifbind = elem.GetBindRuntime("If");
 		if (ifbind == null)
@@ -143,6 +161,8 @@ internal class RenderContext
 				return false;
 			return true;
 		}
+		if (data != null)
+			return GetBoolVal(data, ifbind.Expression);
 		var val = Engine.EvaluateValue(ifbind.Expression);
 		if (val is Boolean boolVal)
 			return boolVal;
