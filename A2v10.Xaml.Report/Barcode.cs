@@ -7,8 +7,8 @@ namespace A2v10.Xaml.Report;
 
 public enum BarcodeType
 {
-    Ean13,
-    Ean8
+    EAN13,
+    EAN8
 }
 
 [ContentProperty("Value")]
@@ -18,4 +18,5 @@ public class Barcode : FlowElement
     public Length? Width { get; set; }
     public Int32 Height { get; set; }
     public BarcodeType Type { get; set; }
+    public Boolean PrintDigits { get; set; } = true;
 }
